@@ -1,4 +1,4 @@
-# FVM Hardhat Kit 
+# FVM Hardhat Kit to build on Filecoin Ethereum Virtual Machine - HyperSapce testnet hackathon
 
 ## Cloning the Repo
 
