@@ -23,6 +23,19 @@ yarn install
 
 This will clone the hardhat kit onto your computer, switch directories into the newly installed kit, and install the dependencies the kit needs to work.
 
+if you have problems installing dependencies try :
+```npm i @zondax/filecoin-solidity
+npm i @openzeppelin/contracts
+```
+
+Install solidity-sborutils manually
+
+```
+$ git clone https://github.com/smartcontractkit/solidity-cborutils.git
+$ cd solidity-cborutils
+$ yarn install
+
+```
 
 ## Get a Private Key
 
