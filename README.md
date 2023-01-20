@@ -1,4 +1,4 @@
-# FEVM Hardhat Kit
+# FVM Hardhat Kit 
 
 ## Cloning the Repo
 
