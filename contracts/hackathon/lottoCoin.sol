@@ -1,72 +1,62 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+pragma solidity 0.8.17;
 
-contract lottoCoin is IERC20, Ownable {
+import "@zondax/filecoin-solidity/contracts/fvm/IERC20.sol";
+import "@zondax/filecoin-solidity/contracts/fvm/SafeMath.sol";
 
-    uint256 private constant MAX_UINT256 = 2**256 - 1;
-
-    mapping(address => uint256) balances;
-    mapping(address => mapping(address => uint256)) allowed;
+contract LottoCoin is IERC20 {
+    using SafeMath for uint256;
 
     string public name;
-    uint8 public decimals;
     string public symbol;
+    uint8 public decimals;
     uint256 public totalSupply;
 
-    constructor() {
-        balances[msg.sender] = 10000;
-        totalSupply = 10000;
+    mapping (address => uint256) public balanceOf;
+    mapping (address => mapping (address => uint256)) public allowance;
+
+    constructor() public {
         name = "LottoCoin";
-        decimals = 0;
-        symbol = "LC";
+        symbol = "LOT";
+        decimals = 18;
+        totalSupply = 100000000 * (10 ** uint256(decimals));
+        balanceOf[msg.sender] = totalSupply;
     }
 
-    function transfer(address _to, uint256 _value) public override returns (bool success) {
-        require(balances[msg.sender] >= _value);
-
-        balances[msg.sender] -= _value;
-        balances[_to] += _value;
-
+    function transfer(address _to, uint256 _value) public returns (bool success) {
+        require(balanceOf[msg.sender] >= _value);
+        balanceOf[msg.sender] = balanceOf[msg.sender].sub(_value);
+        balanceOf[_to] = balanceOf[_to].add(_value);
         emit Transfer(msg.sender, _to, _value);
         return true;
     }
 
-    function transferFrom(address _from, address _to, uint256 _value) public override returns (bool success) {
-        uint256 allowance_ = allowed[_from][msg.sender];
-        require(balances[_from] >= _value && allowance_ >= _value);
-
-        balances[_to] += _value;
-        balances[_from] -= _value;
-        if (allowance_ >= _value) {
-            allowed[_from][msg.sender] -= _value;
-        }
-
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+        require(balanceOf[_from] >= _value);
+        require(allowance[_from][msg.sender] >= _value);
+        balanceOf[_from] = balanceOf[_from].sub(_value);
+        balanceOf[_to] = balanceOf[_to].add(_value);
+        allowance[_from][msg.sender] = allowance[_from][msg.sender].sub(_value);
         emit Transfer(_from, _to, _value);
         return true;
     }
 
-    function increaseTotalSupply() external onlyOwner returns (bool success) {
-        totalSupply += 1000;
-        balances[owner()] += 1000;
-        
-        return true;
-    }
-
-    function balanceOf(address _owner) public view override returns (uint256 balance) {
-        return balances[_owner];
-    }
-
-    function approve(address _spender, uint256 _value) public override returns (bool success) {
-        allowed[msg.sender][_spender] = _value;
+    function approve(address _spender, uint256 _value) public returns (bool success) {
+        allowance[msg.sender][_spender] = _value;
         emit Approval(msg.sender, _spender, _value);
         return true;
     }
 
-    function allowance(address _owner, address _spender) public view override returns (uint256 remaining) {
-        return allowed[_owner][_spender];
+    function totalSupply() public view returns (uint256) {
+        return totalSupply;
     }
 
+    function balanceOf(address _owner) public view returns (uint256 balance) {
+        return balanceOf[_owner];
+    }
+
+    function allowance(address _owner, address _spender) public view returns (uint256 remaining) {
+        return allowance[_owner][_spender];
+    }
 }

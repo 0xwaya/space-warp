@@ -1,46 +1,167 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity 0.8.17;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "erc721a/contracts/ERC721A.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/utils/Strings.sol";
+import "@zondax/filecoin-solidity/contracts/fvm/IERC721.sol";
+import "@zondax/filecoin-solidity/contracts/fvm/IERC721Enumerable.sol";
 
-interface ILotto {
-    function sendPrize() external returns (bytes32 requestId);
-}
+contract LottoNFT is IERC721, IERC721Enumerable {
+    string public name = "LottoNFT";
+    string public symbol = "LOTTO";
+    uint256 public totalSupply;
+    mapping (uint256 => address) public tokenOwner;
+    mapping (uint256 => uint256) public tokenIdToNumber;
+    mapping (address => uint256) public balanceOf;
+    mapping (uint256 => bool) public isWinner;
+    uint256 public winningNumber;
+    address public winner;
+    uint256 public lastWinnerNumber;
+    address public lastWinner;
+    uint256 public lastDrawTime;
+    uint256 public drawInterval;
+    uint256 public ticketPrice;
+    uint256 public totalTickets;
+    uint256 public totalPrize;
+    uint256 public totalFees;
+    address public feeRecipient;
+    address public owner;
 
-contract lottoNFT is ERC721A, Ownable {
-
-    uint8 constant mintAmount = 1;
-    uint256 cost = 10;
-    string baseURI = "https://ipfs.io/ipfs/QmYGgEFqTRkWvNZ6u7gfk9HDdh55bQAbYVyc16TF1zX658/";
-    IERC20 coin;
-    ILotto lotto;
-
-    constructor() ERC721A("LottoNFT", "LOTTO") {}
-
-    function mint() external {
-        require(coin.allowance(msg.sender, address(this)) >= cost, "Sender has not given contract enough allowance");
-        require(coin.balanceOf(msg.sender) >= cost, "Sender does not have enough LottoCoin balance");
-        coin.transferFrom(msg.sender, address(lotto), cost);
-        _mint(msg.sender, mintAmount);
-        if(totalSupply() % 5 == 0) {
-            lotto.sendPrize();
-        }
+    constructor(
+        uint256 _winningNumber,
+        uint256 _drawInterval,
+        uint256 _ticketPrice,
+        uint256 _totalPrize,
+        uint256 _totalFees,
+        address _feeRecipient,
+        address _owner
+    ) public {
+        winningNumber = _winningNumber;
+        drawInterval = _drawInterval;
+        ticketPrice = _ticketPrice;
+        totalPrize = _totalPrize;
+        totalFees = _totalFees;
+        feeRecipient = _feeRecipient;
+        owner = _owner;
     }
 
-    function tokenURI(uint256 _tokenId) public view override returns (string memory) {
-        require(_exists(_tokenId), "Token does not exist.");
-        return string(abi.encodePacked(baseURI, Strings.toString(_tokenId), ''));   
+    function mint(address _to, uint256 _tokenId, uint256 _number) public onlyOwner {
+        _mint(_to, _tokenId);
+        tokenIdToNumber[_tokenId] = _number;
+        totalSupply++;
     }
 
-    function setCoinAddr(address _coinAddr) external onlyOwner {
-        coin = IERC20(_coinAddr);
+    function draw() public onlyOwner {
+        require(now >= lastDrawTime + drawInterval);
+        lastDrawTime = now;
+        lastWinnerNumber = winningNumber;
+        lastWinner = winner;
+        winner = tokenOwner[winningNumber];
+        isWinner[winningNumber] = true;
+        totalPrize = totalTickets * ticketPrice;
+        totalFees = totalPrize * (totalFees / 100);
+        feeRecipient.transfer(totalFees);
+        winner.transfer(totalPrize - totalFees);
     }
 
-    function setLottoAddr(address _lottoAddr) external onlyOwner {
-        lotto = ILotto(_lottoAddr);
+    function buyTicket(uint256 _number) public payable {
+        require(msg.value == ticketPrice);
+        require(_number > 0 && _number <= totalSupply);
+        require(tokenOwner[_number] == address(0));
+        totalTickets++;
+        tokenOwner[_number] = msg.sender;
+        balanceOf[msg.sender]++;
+        _mint(msg.sender, _number);
     }
 
+    function getWinner() public view returns (address) {
+        return winner;
+    }
+
+    function getLastWinner() public view returns (address) {
+        return lastWinner;
+    }
+
+    function getLastWinnerNumber() public view returns (uint256) {
+        return lastWinnerNumber;
+    }
+
+    function getTotalTickets() public view returns (uint256) {
+        return totalTickets;
+    }
+
+    function getTotalPrize() public view returns (uint256) {
+        return totalPrize;
+    }
+
+    function getTotalFees() public view returns (uint256) {
+        return totalFees;
+    }
+
+    function getFeeRecipient() public view returns (address) {
+        return feeRecipient;
+    }
+
+    function getOwner() public view returns (address) {
+        return owner;
+    }
+
+    function getDrawInterval() public view returns (uint256) {
+        return drawInterval;
+    }
+
+    function getTicketPrice() public view returns (uint256) {
+        return ticketPrice;
+    }
+
+    function getLastDrawTime() public view returns (uint256) {
+        return lastDrawTime;
+    }
+
+    function getNumberByTokenId(uint256 _tokenId) public view returns (uint256) {
+        return tokenIdToNumber[_tokenId];
+    }
+
+    function getIsWinner(uint256 _number) public view returns (bool) {
+        return isWinner[_number];
+    }
+
+    function getWinningNumber() public view returns (uint256) {
+        return winningNumber;
+    }
+
+    function getTotalSupply() public view returns (uint256) {
+        return totalSupply;
+    }
+
+    function getBalanceOf(address _owner) public view returns (uint256) {
+        return balanceOf[_owner];
+    }
+
+    function getOwnerOf(uint256 _tokenId) public view returns (address) {
+        return tokenOwner[_tokenId];
+    }
+
+    function safeTransferFrom(address _from, address _to, uint256 _tokenId) public {
+        _safeTransferFrom(_from, _to, _tokenId);
+    }
+
+    function transferFrom(address _from, address _to, uint256 _tokenId) public {
+        _transferFrom(_from, _to, _tokenId);
+    }
+
+    function approve(address _spender, uint256 _tokenId) public {
+        _approve(_spender, _tokenId);
+    }
+
+    function setApprovalForAll(address _operator, bool _approved) public {
+        _setApprovalForAll(_operator, _approved);
+    }
+
+    function isApprovedForAll(address _owner, address _operator) public view returns (bool) {
+        return _isApprovedForAll(_owner, _operator);
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner);
+        _;
+    }
 }
