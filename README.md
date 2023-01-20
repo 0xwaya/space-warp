@@ -1,7 +1,7 @@
 # FVM Hardhat Kit to build on Filecoin Virtual Machine
-# HyperSpace testnet hackathon by ETHGLobal
+#  HyperSpace testnet hackathon by EthGLobal Jan 2023
 
-## Cloning the Repo
+## Cloning the Repo (not for production )
 
 Open up your terminal (or command prompt) and navigate to a directory you would like to store this code on. Once there type in the following command:
 
@@ -11,12 +11,14 @@ git clone https://github.com/0xwaya/space-warp.git
 cd space-warp
 yarn install
 ```
+
 or using GitHub CLI
+
 ```
 gh repo clone 0xwaya/space-warp
 cd space-warp
 yarn install
-``
+```
 
 
 This will clone the hardhat kit onto your computer, switch directories into the newly installed kit, and install the dependencies the kit needs to work.
