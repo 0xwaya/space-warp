@@ -1,53 +1,53 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.17;
+pragma solidity ^0.8.17;
 
-import "@zondax/filecoin-solidity/contracts/fvm/SafeMath.sol";
+import "@zondax/filecoin-solidity/contracts/Filecoin.sol";
 
 contract Lotto {
-    using SafeMath for uint256;
-
     address public owner;
-    uint256 public ticketPrice;
-    uint256 public totalTickets;
-    uint256 public totalPrize;
-    uint256 public ticketsSold;
-    uint256 public ticketsRemaining;
-    uint256 public prizePerTicket;
-    mapping (address => uint256) public tickets;
-    mapping (uint256 => address) public winners;
-    event TicketBought(address indexed buyer, uint256 ticketId);
-    event WinnerDrawn(uint256 indexed ticketId, address winner);
+    uint256 public pot;
+    mapping (address => uint256) public players;
+    uint256 public deadline;
+    uint256 public winner;
+    bool public gameOver;
+    Filecoin public filecoin;
 
-    constructor(uint256 _ticketPrice, uint256 _totalTickets, uint256 _totalPrize) public {
+    constructor() public {
         owner = msg.sender;
-        ticketPrice = _ticketPrice;
-        totalTickets = _totalTickets;
-        totalPrize = _totalPrize;
-        ticketsRemaining = totalTickets;
-        prizePerTicket = totalPrize.div(totalTickets);
+        filecoin = Filecoin(msg.sender);
     }
 
-    function buyTicket() public payable {
-        require(msg.value == ticketPrice, "Incorrect ticket price");
-        require(ticketsRemaining > 0, "No tickets remaining");
-        uint256 ticketId = ticketsSold;
-        tickets[msg.sender] = ticketId;
-        ticketsSold = ticketsSold.add(1);
-        ticketsRemaining = ticketsRemaining.sub(1);
-        emit TicketBought(msg.sender, ticketId);
+    function enter() public payable {
+        require(msg.value > 0, "Must enter with a positive amount");
+        require(now < deadline, "Deadline has passed");
+        players[msg.sender] += msg.value;
+        pot += msg.value;
     }
 
-    function drawWinner() public {
-        require(msg.sender == owner, "Only owner can draw winner");
-        uint256 ticketId = ticketsSold.sub(ticketsRemaining);
-        address winner = tickets[ticketId];
-        winners[ticketId] = winner;
-        emit WinnerDrawn(ticketId, winner);
+    function setDeadline(uint256 _deadline) public {
+        require(msg.sender == owner, "Only the owner can set the deadline");
+        deadline = _deadline;
     }
 
-    function claimPrize() public {
-        uint256 ticketId = tickets[msg.sender];
-        require(winners[ticketId] == msg.sender, "You are not the winner");
-        msg.sender.transfer(prizePerTicket);
+    function pickWinner() public {
+        require(now > deadline, "Deadline has not passed");
+        require(!gameOver, "Game is already over");
+        uint256 lucky = uint256(keccak256(abi.encodePacked(block.difficulty, block.timestamp, pot))) % pot;
+        uint256 sum = 0;
+        for (address player in players) {
+            sum += players[player];
+            if (sum > lucky) {
+                winner = player;
+                break;
+            }
+        }
+        gameOver = true;
+    }
+
+    function claim() public {
+        require(msg.sender == winner, "You are not the winner");
+        require(gameOver, "Game is not over yet");
+        filecoin.transfer(msg.sender, pot);
+        pot = 0;
     }
 }
