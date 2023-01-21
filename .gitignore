@@ -9,7 +9,8 @@ node_modules
 coverage
 coverage.json
 typechain
-
+config.js
+package.json
 # don't push the environment vars!
 .env
 
@@ -97,6 +98,10 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+# yarn
+yarn.lock
+
 
 gas-report.txt
 
