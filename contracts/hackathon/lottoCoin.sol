@@ -2,9 +2,8 @@
 
 pragma solidity 0.8.17;
 
-import "@zondax/filecoin-solidity/contracts/fvm/IERC20.sol";
-import "@zondax/filecoin-solidity/contracts/fvm/SafeMath.sol";
-
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol"
+import "contracts/lib/openzeppelin-contracts/contracts/utils/math/SafeMath.sol"
 contract LottoCoin is IERC20 {
     using SafeMath for uint256;
 
