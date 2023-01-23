@@ -1,9 +1,14 @@
 # FVM Hardhat Kit to build on Filecoin Virtual Machine
 #  HyperSpace testnet hackathon by EthGLobal Jan 2023
 
-## Cloning the Repo (not for production )
+##  (experimental code only )
 
-Open up your terminal (or command prompt) and navigate to a directory you would like to store this code on. Once there type in the following command:
+## Team Members: ( @0xwaya#6613, @austin#9707, @manu#7599 )
+
+
+
+In terminal, create directory to store code in. once inside directory use this command:
+
 
 
 ```
@@ -24,7 +29,9 @@ yarn install
 This will clone the hardhat kit onto your computer, switch directories into the newly installed kit, and install the dependencies the kit needs to work.
 
 if you have problems installing dependencies try :
-```npm i @zondax/filecoin-solidity
+
+```
+npm i @zondax/filecoin-solidity
 npm i @openzeppelin/contracts
 ```
 
@@ -37,21 +44,16 @@ $ yarn install
 
 ```
 
-## Get a Private Key
 
-You can get a private key from a wallet provider [such as Metamask](https://metamask.zendesk.com/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key).
+## Add your Private Key as an Environment Variable 
 
-
-## Add your Private Key as an Environment Variable
+## use (.env) fie and add to .gitgnore "DO NOT PUSH YOUR PRIVATE KEYS TO GITHUB" 
 
 Add your private key as an environment variable by running this command:
 
  ```
-export PRIVATE_KEY='abcdef'
+export PRIVATE_KEY='3094U2934U.....f'
 ```
-
-If you use a .env file, don't commit and push any changes to .env files that may contain sensitive information, such as a private key! If this information reaches a public GitHub repository, someone can use it to check if you have any Mainnet funds in that wallet address, and steal them!
-
 
 ## Get the Deployer Address
 
@@ -60,7 +62,7 @@ Run this command:
 yarn hardhat get-address
 ```
 
-The will show you the ethereum-style address associated with that private key and the filecoin-style f4 address (also known as t4 address on testnets)! The Ethereum address can now be exclusively used for almost all FEVM tools, including the faucet.
+The will show you the ethereum-style address associated with that private key and the filecoin-style f4 address (also known as t4 address on testnets)
 
 
 ## Fund the Deployer Address
@@ -70,11 +72,13 @@ Go to the [Hyperspace testnet faucet](https://hyperspace.yoga/#faucet), and past
 
 ## Deploy the Contracts
 
-Currently there are 2 main types of contracts:
+Currently there are 3 main types of contracts:
 
 * Basic Solidity Examples: Simple contracts to show off basic solidity
 
 * Filecoin API Examples: Contracts that demo how to use the Filecoin APIs in Solidity to access storage deals and other Filecoin specific functions.
+
+* Hackathon contracts for Space Warp.
 
 
 Type in the following command in the terminal to deploy all contracts:
