@@ -3,7 +3,6 @@ pragma solidity ^0.8.0;
 
 import "erc721a/contracts/ERC721A.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/utils/Strings.sol";
 
 interface IWarp {
     function sendPrize() external returns (bytes32 requestId);
