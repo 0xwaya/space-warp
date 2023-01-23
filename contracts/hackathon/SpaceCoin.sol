@@ -7,13 +7,11 @@
 
 pragma solidity ^0.8.17;
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol"
-import "contracts/lib/openzeppelin-contracts/contracts/utils/math/SafeMath.sol"
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract SpaceCoin is ERC20 { 
+contract SpaceCoin is ERC20{ 
     address public owner;
     mapping (address => uint256) public balanceOf;
-    mapping (address => uint256) public balances;
     mapping (address => mapping (address => uint256)) public allowance;
  
     event Transfer(address indexed _from, address indexed _to, uint256 _value);
@@ -25,24 +23,11 @@ contract SpaceCoin is ERC20 {
         symbol = "SPACE";
         decimals = 18;
         totalSupply = 100000 * (10 ** uint256(decimals));
-        balanceOf[msg.sender] = totalSupply;
-
-    /** * @dev Constructor to set the initial balance of SpaceCoin
-        * @param _initialSupply The initial supply of SpaceCoin */
-
-        constructor (uint256 _initialSupply) public {
-        balanceOf[msg.sender] = _initialSupply;
-        }
     }
         modifier transfer(address _to, uint256 _value) {
         require(balanceOf[msg.sender] >= _value);
         _;
     }
-
-    function balanceOf(address _owner) public view returns (uint256) {
-        return balances[_owner];
-    }
-
     function mint(address _to, uint256 _value) public onlyOwner {
         require(_value > 0, "Mint amount must be greater than 0");
         balances[_to] += _value;
@@ -88,8 +73,4 @@ contract SpaceCoin is ERC20 {
         return allowance[_owner][_spender];
     }
 
-    modifier transfer(address _to, uint256 _value) {
-        require(balanceOf[msg.sender] >= _value);
-        _;
-    }
 }
