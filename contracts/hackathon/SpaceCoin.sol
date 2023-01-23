@@ -4,16 +4,16 @@ pragma solidity 0.8.17;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol"
 import "contracts/lib/openzeppelin-contracts/contracts/utils/math/SafeMath.sol"
-contract LottoCoin is IERC20 {
-    using SafeMath for uint256;
+contract SpaceCoin is ERC20 {
+    string public constant name = "Space Coin";
+    string public constant symbol = "SPACE";
+    uint8 public constant decimals = 18;
+    uint256 public totalSupply = 10000;
 
-    string public name;
-    string public symbol;
-    uint8 public decimals;
-    uint256 public totalSupply;
-
-    mapping (address => uint256) public balanceOf;
+    mapping(address => uint256) public balanceOf;     
     mapping (address => mapping (address => uint256)) public allowance;
+ 
+        event Transfer(address indexed from, address indexed to, uint256 value);
 
     constructor() public {
         name = "LottoCoin";
@@ -21,6 +21,15 @@ contract LottoCoin is IERC20 {
         decimals = 18;
         totalSupply = 100000000 * (10 ** uint256(decimals));
         balanceOf[msg.sender] = totalSupply;
+
+        constructor(uint256 _supply) public {
+        setTotalSupply(_supply);
+        balanceOf[msg.sender] = _supply;
+        }
+    }
+        modifier transfer(address _to, uint256 _value) {
+        require(balanceOf[msg.sender] >= _value);
+        _;
     }
 
     function transfer(address _to, uint256 _value) public returns (bool success) {
@@ -30,6 +39,9 @@ contract LottoCoin is IERC20 {
         emit Transfer(msg.sender, _to, _value);
         return true;
     }
+        function setTotalSupply(uint256 _supply) public {
+        totalSupply = _supply;
+    } 
 
     function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
         require(balanceOf[_from] >= _value);

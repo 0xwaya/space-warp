@@ -33,7 +33,7 @@ module.exports = async ({ deployments }) => {
     const { deploy } = deployments
 
     const priorityFee = await callRpc("eth_maxPriorityFeePerGas")
-    
+
     // Wraps Hardhat's deploy, logging errors to console.
     const deployLogError = async (title, obj) => {
         let ret;
@@ -51,7 +51,7 @@ module.exports = async ({ deployments }) => {
     const tokenToBeMinted = networkConfig[chainId]["tokenToBeMinted"]
 
 
-    await deployLogError("SimpleCoin", {
+    await deployLogError("SpaceCoin", {
         from: deployer.address,
         args: [tokenToBeMinted],
         // maxPriorityFeePerGas to instruct hardhat to use EIP-1559 tx format
@@ -67,7 +67,7 @@ module.exports = async ({ deployments }) => {
         log: true,
     })
 
-    await deployLogError("DealRewarder", {
+    await deployLogError("SpaceWarpLottery", {
         from: deployer.address,
         args: [],
         // maxPriorityFeePerGas to instruct hardhat to use EIP-1559 tx format
