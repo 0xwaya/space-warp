@@ -1,5 +1,10 @@
 // SPDX-License-Identifier: MIT
 
+/**
+ * @title SpaceCoin
+ * @dev SpaceCoin is a token used in the Space Warp hackathon
+ */
+
 pragma solidity ^0.8.17;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol"
@@ -7,19 +12,14 @@ import "contracts/lib/openzeppelin-contracts/contracts/utils/math/SafeMath.sol"
 
 contract SpaceCoin is ERC20Interface { 
     address public owner;
-    string public constant name = "Space Coin";
-    string public constant symbol = "SPACE";
-    uint8 public constant decimals = 18;
-    uint256 public totalSupply = 100000;
-
-    mapping (address => uint) public balanceOf;
+    mapping (address => uint256) public balanceOf;
     mapping (address => uint256) public balances;
     mapping (address => mapping (address => uint256)) public allowance;
  
     event Transfer(address indexed _from, address indexed _to, uint256 _value);
     event Minted(address indexed _from, address indexed _to, uint256 _value);
 
-    constructor() public {
+        constructor() public {
         owner = msg.sender;
         name = "LottoCoin";
         symbol = "SPACE";
@@ -27,9 +27,11 @@ contract SpaceCoin is ERC20Interface {
         totalSupply = 100000 * (10 ** uint256(decimals));
         balanceOf[msg.sender] = totalSupply;
 
-        constructor(uint256 _supply) public {
-        setTotalSupply(_supply);
-        balanceOf[msg.sender] = _supply;
+    /** * @dev Constructor to set the initial balance of SpaceCoin
+        * @param _initialSupply The initial supply of SpaceCoin */
+
+        constructor (uint256 _initialSupply) public {
+        balanceOf[msg.sender] = _initialSupply;
         }
     }
         modifier transfer(address _to, uint256 _value) {
@@ -49,10 +51,14 @@ contract SpaceCoin is ERC20Interface {
         emit Minted(msg.sender, _to, _value);
     }
   
+      /** * @dev Function to transfer tokens from one address to another
+          * @param _to The address to transfer tokens to
+          * @param _value The amount of tokens to transfer */
+          
     function transfer(address _to, uint256 _value) public returns (bool) {
-        require(balances[msg.sender] >= _value && _value > 0 && allowed[msg.sender], "Transfer failed");
-        balances[msg.sender] -= _value;
-        balances[_to] += _value;
+        require(balanceOf[msg.sender] >= _value, "Insufficient balance");
+        balanceOf[msg.sender] -= _value;
+        balanceOf[_to] += _value;
         emit Transfer(msg.sender, _to, _value);
         return true;
     }
