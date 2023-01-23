@@ -21,7 +21,7 @@ contract SpaceCoin is ERC20Interface {
 
         constructor() public {
         owner = msg.sender;
-        name = "LottoCoin";
+        name = "SpaceCoin";
         symbol = "SPACE";
         decimals = 18;
         totalSupply = 100000 * (10 ** uint256(decimals));
@@ -54,7 +54,7 @@ contract SpaceCoin is ERC20Interface {
       /** * @dev Function to transfer tokens from one address to another
           * @param _to The address to transfer tokens to
           * @param _value The amount of tokens to transfer */
-          
+
     function transfer(address _to, uint256 _value) public returns (bool) {
         require(balanceOf[msg.sender] >= _value, "Insufficient balance");
         balanceOf[msg.sender] -= _value;
