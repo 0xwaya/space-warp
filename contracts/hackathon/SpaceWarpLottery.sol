@@ -2,7 +2,7 @@
 /** created for experimental dev in Filecoin FVM  */
 
 pragma solidity ^0.8.17;
-import "@chainlink/contracts/src/v0.6/ChainlinkClient.sol";
+import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
 
 contract SpaceWarpLottery {
     ChainlinkClient public chainlinkClient;

@@ -7,10 +7,10 @@
 
 pragma solidity ^0.8.17;
 
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol"
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol"
 import "contracts/lib/openzeppelin-contracts/contracts/utils/math/SafeMath.sol"
 
-contract SpaceCoin is ERC20Interface { 
+contract SpaceCoin is ERC20 { 
     address public owner;
     mapping (address => uint256) public balanceOf;
     mapping (address => uint256) public balances;
