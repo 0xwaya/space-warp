@@ -1,72 +1,46 @@
 // SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "erc721a/contracts/ERC721A.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
-pragma solidity ^0.8.17;
-
-// Interface for ERC-721 Non Fungible Token
-interface IERC721 {
-    function totalSupply() external view returns (uint256);
-    function balanceOf(address owner) external view returns (uint256);
-    function ownerOf(uint256 tokenId) external view returns (address);
-    function approve(address to, uint256 tokenId) external;
-    function transferFrom(address from, address to, uint256 tokenId) external;
-    function safeTransferFrom(address from, address to, uint256 tokenId) external;
-    event Transfer(address indexed from, address indexed to, uint256 tokenId);
-    event Approval(address indexed owner, address indexed approved, uint256 tokenId);
+interface IWarp {
+    function sendPrize() external returns (bytes32 requestId);
 }
 
-// Filecoin FEVM
-contract LottoNFT is IERC721 {
-    mapping(uint256 => address) private _ownerOf;
-    mapping(address => uint256) private _balanceOf;
-    mapping(address => mapping(uint256 => bool)) private _tokensOfOwner;
-    uint256 private _totalSupply;
-    
-    constructor() public {
-        _totalSupply = 0;
+contract WarpNFT is ERC721A, Ownable {
+
+    uint8 constant mintAmount = 1;
+    uint256 cost = 10;
+    string baseURI = "https://ipfs./ipfs/....oDdh55bQAbYVyc16TF1zX658/";
+    IERC20 coin;
+    IWarp warp;
+
+    constructor() ERC721A("Warp NFT", "WARP") {}
+
+    function mint() external {
+        require(coin.allowance(msg.sender, address(this)) >= cost, "Sender has not given contract enough allowance");
+        require(coin.balanceOf(msg.sender) >= cost, "Sender does not have enough LottoCoin balance");
+        coin.transferFrom(msg.sender, address(lotto), cost);
+        _mint(msg.sender, mintAmount);
+        if(totalSupply() % 5 == 0) {
+            lotto.sendPrize();
+        }
     }
-    
-    function totalSupply() external view returns (uint256) {
-        return _totalSupply;
+
+    function tokenURI(uint256 _tokenId) public view override returns (string memory) {
+        require(_exists(_tokenId), "Token does not exist.");
+        return string(abi.encodePacked(baseURI, Strings.toString(_tokenId), ''));   
     }
-    
-    function balanceOf(address owner) external view returns (uint256) {
-        return _balanceOf[owner];
+
+    function setCoinAddr(address _coinAddr) external onlyOwner {
+        coin = IERC20(_coinAddr);
     }
-    
-    function ownerOf(uint256 tokenId) external view returns (address) {
-        return _ownerOf[tokenId];
+
+    function setWarpAddr(address _warpAddr) external onlyOwner {
+        warp = IWarp(_lottoAddr);
     }
-    
-    function approve(address to, uint256 tokenId) external {
-        require(ownerOf(tokenId) == msg.sender, "You are not the owner of this token");
-        _tokensOfOwner[msg.sender][tokenId] = true;
-        emit Approval(msg.sender, to, tokenId);
-    }
-    
-    function transferFrom(address from, address to, uint256 tokenId) external {
-        require(_tokensOfOwner[from][tokenId], "Token not approved");
-        _tokensOfOwner[from][tokenId] = false;
-        _tokensOfOwner[to][tokenId] = true;
-        _ownerOf[tokenId] = to;
-        emit Transfer(from, to, tokenId);
-    }
-    
-    function safeTransferFrom(address from, address to, uint256 tokenId) external {
-        // Confirm that the recipient is a valid ERC-721 receiver
-        require(to.call(bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"))), "Recipient is not a valid ERC-721 receiver");
-        
-        // Transfer the token
-        transferFrom(from, to, tokenId);
-    }
-    
-    function mintToken(address to) public returns (uint256) {
-        _totalSupply++;
-        uint256 newTokenId = _totalSupply;
-        _ownerOf[newTokenId] = to;
-        _balanceOf[to]++;
-        _tokensOfOwner[to][newTokenId] = true;
-        emit Transfer(address(0), to, newTokenId);
-        return newTokenId;
-    }
+
 }
