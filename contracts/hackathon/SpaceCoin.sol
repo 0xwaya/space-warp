@@ -4,16 +4,17 @@ pragma solidity 0.8.17;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol"
 import "contracts/lib/openzeppelin-contracts/contracts/utils/math/SafeMath.sol"
+
 contract SpaceCoin is ERC20 {
     string public constant name = "Space Coin";
     string public constant symbol = "SPACE";
     uint8 public constant decimals = 18;
     uint256 public totalSupply = 10000;
 
-    mapping(address => uint256) public balanceOf;     
+    mapping (address => uint) public balanceOf;
     mapping (address => mapping (address => uint256)) public allowance;
  
-        event Transfer(address indexed from, address indexed to, uint256 value);
+    event Transfer(address indexed from, address indexed to, uint256 amount);
 
     constructor() public {
         name = "LottoCoin";
@@ -32,12 +33,13 @@ contract SpaceCoin is ERC20 {
         _;
     }
 
-    function transfer(address _to, uint256 _value) public returns (bool success) {
-        require(balanceOf[msg.sender] >= _value);
-        balanceOf[msg.sender] = balanceOf[msg.sender].sub(_value);
-        balanceOf[_to] = balanceOf[_to].add(_value);
-        emit Transfer(msg.sender, _to, _value);
-        return true;
+  
+    function transfer(address to, uint256 amount) public returns (bool success) {
+    require(balanceOf[msg.sender] >= amount);
+    balanceOf[msg.sender] -= amount;
+    balanceOf[to] += amount;
+    Transfer(msg.sender, to, amount);
+    return true;
     }
         function setTotalSupply(uint256 _supply) public {
         totalSupply = _supply;
