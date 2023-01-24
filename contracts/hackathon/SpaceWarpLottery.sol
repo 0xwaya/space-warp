@@ -23,17 +23,15 @@ contract SpaceWarpLottery {
         // Set the winner
         winner = _vrfOutcome;
     }
-
-    // Buy a ticket
-    function buyTicket(address _buyer) public payable {
+      function buyTicket(address _buyer) public payable {
         // Check if the ticket is valid
-        require(_msg.value == 1 ether);
+        require(msg.value == 0.00001 ether);
         // Update the ticket count
         ticketCount++;
         // Add the ticket to the list
         tickets[_buyer] = ticketCount;
         // Add the ticket price to the pot
-        pot += _msg.value;
+        pot += msg.value;
     }
 
     // Refund tickets if the event is cancelled
