@@ -28,7 +28,7 @@ contract SpaceCoin is ERC20{
         require(balanceOf[msg.sender] >= _value);
         _;
     }
-    function mint(address _to, uint256 _value) public onlyOwner {
+    function mint(address _to, uint256 _value) public {
         require(_value > 0, "Mint amount must be greater than 0");
         balances[_to] += _value;
         totalSupply += _value;

@@ -5,7 +5,7 @@ pragma solidity ^0.8.17;
 
 import "@chainlink/contracts/src/v0.6/ChainlinkClient.sol";
 import "@chainlink/contracts/src/v0.6/interfaces/ChainlinkRequestInterface.sol";
-import "@chainlink/contracts/src/v0.6/interfaces/ChainlinkVRFInterface.sol";
+import "@chainlink/contracts/src/v0.6/VRFConsumerBase.sol";
 
 contract SpaceLottery {
     mapping(address => uint) public balance;
