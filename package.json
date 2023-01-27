@@ -33,6 +33,7 @@
     "solidity-coverage": "^0.7.22"
   },
   "dependencies": {
+    "@chainlink/contracts": "^0.6.0",
     "@ethersproject/abi": "^5.7.0",
     "@ethersproject/providers": "^5.7.2",
     "@glif/filecoin-address": "^2.0.18",
