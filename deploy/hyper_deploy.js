@@ -11,8 +11,8 @@ const DEPLOYER_PRIVATE_KEY = network.config.accounts[0]
 async function callRpc(method, params) {
     var options = {
         method: "POST",
-        url: "https://api.hyperspace.node.glif.io/rpc/v1",
-        // url: "http://localhost:1234/rpc/v0",
+        url: "https://nd-998-437-463.p2pify.com/317c7900a7c3f26a7453d7847b3bf318/rpc/v0",
+        // url: "https://api.hyperspace.node.glif.io/rpc/v1",
         headers: {
             "Content-Type": "application/json",
         },
@@ -59,7 +59,7 @@ module.exports = async ({ deployments }) => {
         log: true,
     })
 
-    await deployLogError("WarpNFT", {
+    await deployLogError("", {
         from: deployer.address,
         args: [],
         // maxPriorityFeePerGas to instruct hardhat to use EIP-1559 tx format
@@ -67,7 +67,7 @@ module.exports = async ({ deployments }) => {
         log: true,
     })
 
-    await deployLogError("SpaceWarpLottery", {
+    await deployLogError("", {
         from: deployer.address,
         args: [],
         // maxPriorityFeePerGas to instruct hardhat to use EIP-1559 tx format

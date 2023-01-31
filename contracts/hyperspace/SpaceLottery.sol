@@ -3,9 +3,9 @@
 
 pragma solidity ^0.8.17;
 
-import "@chainlink/contracts/src/v0.6/ChainlinkClient.sol";
-import "@chainlink/contracts/src/v0.6/interfaces/ChainlinkRequestInterface.sol";
-import "@chainlink/contracts/src/v0.6/VRFConsumerBase.sol";
+import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
+import "@chainlink/contracts/src/v0.8/interfaces/ChainlinkRequestInterface.sol";
+import "@chainlink/contracts/src/v0.8/VRFConsumerBase.sol";
 
 contract SpaceLottery {
     mapping(address => uint) public balance;
@@ -68,6 +68,6 @@ contract SpaceLottery {
 
     function __callback(bytes32 _requestId, bytes32 _randomness) public {
         require(_requestId == requestId, "Invalid request ID");
-        uint randomIndex = uint(keccak256(abi.en,));
+        uint randomIndex = uint(keccak256(abi.enencodePacked(_randomness)));
     }
 }

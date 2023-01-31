@@ -945,6 +945,17 @@
     ethereumjs-util "^7.1.4"
     fs-extra "^7.0.1"
 
+"@nomiclabs/hardhat-truffle5@^2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@nomiclabs/hardhat-truffle5/-/hardhat-truffle5-2.0.7.tgz#7519eadd2c6c460c2addc3d4d6efda7a8883361e"
+  integrity sha512-Pw8451IUZp1bTp0QqCHCYfCHs66sCnyxPcaorapu9mfOV9xnZsVaFdtutnhNEiXdiZwbed7LFKpRsde4BjFwig==
+  dependencies:
+    "@nomiclabs/truffle-contract" "^4.2.23"
+    "@types/chai" "^4.2.0"
+    chai "^4.2.0"
+    ethereumjs-util "^7.1.4"
+    fs-extra "^7.0.1"
+
 "@nomiclabs/truffle-contract@^4.2.23":
   version "4.5.10"
   resolved "https://registry.npmjs.org/@nomiclabs/truffle-contract/-/truffle-contract-4.5.10.tgz"
@@ -971,14 +982,9 @@
   resolved "https://registry.npmjs.org/@openzeppelin/contracts/-/contracts-3.4.2.tgz"
   integrity sha512-z0zMCjyhhp4y7XKAcDAi3Vgms4T2PstwBdahiO0+9NaGICQKjynK3wduSRplTgk4LXmoO1yfDGO5RbjKYxtuxA==
 
-"@openzeppelin/contracts@^4.8.0":
+"@openzeppelin/contracts@4.8.1", "@openzeppelin/contracts@^4.8.0":
   version "4.8.1"
   resolved "https://registry.npmjs.org/@openzeppelin/contracts/-/contracts-4.8.1.tgz"
-  integrity sha512-xQ6eUZl+RDyb/FiZe1h+U7qr/f4p/SrTSQcTPH2bjur3C5DbuW/zFgCU/b1P/xcIaEqJep+9ju4xDRi3rmChdQ==
-
-"@openzeppelin/contracts@^4.8.1":
-  version "4.8.1"
-  resolved "https://registry.yarnpkg.com/@openzeppelin/contracts/-/contracts-4.8.1.tgz#709cfc4bbb3ca9f4460d60101f15dac6b7a2d5e4"
   integrity sha512-xQ6eUZl+RDyb/FiZe1h+U7qr/f4p/SrTSQcTPH2bjur3C5DbuW/zFgCU/b1P/xcIaEqJep+9ju4xDRi3rmChdQ==
 
 "@openzeppelin/contracts@~4.3.3":

@@ -3,7 +3,37 @@
 
 ##  (experimental code only )
 
-## Team Members: ( @0xwaya#6613, @austin#9707, @manu#7599 )
+## Team Members: guess im doing this solo as others dropped out @0xwaya#6613
+
+
+Project goal to to deploy a Dex dapp on FVM powered by uniswap. 
+
+    - Create & run local FVM hyperspace testnet node 
+        // wormnode hyperspace project created in chainstack 
+        // Orion node (full nodes, elastic),[https & wss keys]
+        // connect local host Orion node to metamask
+        
+    - code & deploy ERC20 token on FVM hyperspace
+        //(SpaceCoin - SPACE) LP pair token
+        // write unit test
+        
+    - code & deploy ERC20 token on FVM hyperspace
+        // (DataToken - DATA)reward token earned by stakers [FIL+SPACE] = pool
+        // write unit test
+        // DATA tokens are redeemable for perpetual storage in lighthouse protocol
+
+    - clone Uniswap v2.0 and connect to nodes using CRANQ diagrams
+        // deploy in testnet
+
+    - design simple prototype app using ReactJs.
+        // write the initial scripst to connect front end / wallet 
+
+    - create liquidity pool pair = FIL/SPACE
+        // test and deploy
+
+    - create 2 min presentation for hackathon is everthing runs smoothly 
+
+    
 
 
 
@@ -12,8 +42,8 @@ In terminal, create directory to store code in. once inside directory use this c
 
 
 ```
-git clone https://github.com/0xwaya/space-warp.git
-cd space-warp
+git clone https://github.com/0xwaya/space.warp.git
+cd space.warp
 yarn install
 ```
 
