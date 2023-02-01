@@ -20,9 +20,9 @@ Create & run local FVM hyperspace testnet node on ChainStack.
 Create  & deploy ERC20 token on FVM hyperspace
 
 ```
-    Hash: 0x612598ee64b0f241319c66df775a428218fc892636d739e6a3312508020019ee
+    Hash: 0x07bde1b72daf8b9f4f49928e3e27a5fecb7542f03d48e2b994ab8811115916cc
 
-    Space Coin (SPACE) Contract: 0xA9783DBDB4E3465A2CFA74f5F5c2b61e755f3b99
+    Space Coin (SPACE) Contract: 0x3954Faf33315F812A5d55E31E93b3A75A69033aB
 
 ```
 
