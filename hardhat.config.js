@@ -20,7 +20,7 @@ module.exports = {
     networks: {
         hyperspace: {
             chainId: 3141,
-            url: "https://nd-998-437-463.p2pify.com/317c7900a7c3f26a7453d7847b3bf318/rpc/v0",
+            url: " ",
             accounts: [process.env.PRIVATE_KEY],
         },
     },
