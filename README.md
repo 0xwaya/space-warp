@@ -24,6 +24,14 @@ Create  & deploy ERC20 token on FVM hyperspace
 
     Space Coin (SPACE) Contract: 0x3954Faf33315F812A5d55E31E93b3A75A69033aB
 
+    Robust Address: t410fhfkpv4ztcx4bfjovlyy6soz2owtjam5leidgl6i
+
+    ID address: t06049
+
+    Actor Code: bafk2bzacea6etsvrqejjl7uej5dxlswja5gxzqyggsjjvg27timvtiedf7nsg
+
+    Explorer: https://explorer.glif.io/address/0x3954Faf33315F812A5d55E31E93b3A75A69033aB/?network=hyperspacenet
+
 ```
 
         
