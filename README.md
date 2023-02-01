@@ -8,14 +8,21 @@
 
 Project goal to to deploy a Dex dapp on FVM powered by uniswap. 
 
-    - Create & run local FVM hyperspace testnet node 
-        // wormnode hyperspace project created in chainstack 
-        // Orion node (full nodes, elastic),[https & wss keys]
-        // connect local host Orion node to metamask
-        
+    - Create & run local FVM hyperspace testnet node on ChainStack
+        ```
+        HTTPS endpoint: https://nd-998-437-463.p2pify.com/rpc/v0
+
+        WSS Endpoint: wss://ws-nd-998-437-463.p2pify.com/rpc/v0
+
+        ```
     - code & deploy ERC20 token on FVM hyperspace
-        //(SpaceCoin - SPACE) LP pair token
-        // write unit test
+    ```
+    Hash: 0x612598ee64b0f241319c66df775a428218fc892636d739e6a3312508020019ee
+
+    Space Coin (SPACE) Contract: 0xA9783DBDB4E3465A2CFA74f5F5c2b61e755f3b99
+
+    ```
+
         
     - code & deploy ERC20 token on FVM hyperspace
         // (DataToken - DATA)reward token earned by stakers [FIL+SPACE] = pool
