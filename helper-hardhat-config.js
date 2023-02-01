@@ -3,7 +3,7 @@ const { ethers } = require("hardhat")
 const networkConfig = {
     3141: {
         name: "hyperspace",
-        tokenToBeMinted: 12000,
+        tokenToBeMinted: 10000,
     },
 }
 
@@ -11,5 +11,5 @@ const networkConfig = {
 
 module.exports = {
     networkConfig,
-    // developmentChains,
+    // developmentChains, 
 }

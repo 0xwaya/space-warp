@@ -9,9 +9,13 @@ require("dotenv").config()
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY
 
+require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config({ path: ".env" });
+
+
 module.exports = {
     solidity: "0.8.17",
-    defaultNetwork: "local hyperspace Orion",
+    defaultNetwork: "hyperspace",
 
     networks: {
         hyperspace: {

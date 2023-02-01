@@ -1,17 +1,20 @@
-require("hardhat-deploy")
-require("hardhat-deploy-ethers")
+const {
+    ethers
+} = require("hardhat");
 
-const ethers = require("ethers")
+require("dotenv").config({
+    path: ".env"
+});
+
 const util = require("util")
 const request = util.promisify(require("request"))
 const { networkConfig } = require("../helper-hardhat-config")
-
-const DEPLOYER_PRIVATE_KEY = network.config.accounts[0]
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 async function callRpc(method, params) {
     var options = {
         method: "POST",
-        url: "https://nd-998-437-463.p2pify.com/317c7900a7c3f26a7453d7847b3bf318/rpc/v0",
+        url: [process.env.CHAINSTACK_FILECOIN_RPC],
         // url: "https://api.hyperspace.node.glif.io/rpc/v1",
         headers: {
             "Content-Type": "application/json",
@@ -27,7 +30,7 @@ async function callRpc(method, params) {
     return JSON.parse(res.body).result
 }
 
-const deployer = new ethers.Wallet(DEPLOYER_PRIVATE_KEY)
+const provider = new ethers.providers.JsonRpcProvider(process.env.CHAINSTACK_FILECOIN_RPC)
 
 module.exports = async ({ deployments }) => {
     const { deploy } = deployments

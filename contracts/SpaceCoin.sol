@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
@@ -20,7 +21,7 @@ contract SpaceCoin is IERC20, Ownable {
         balances[msg.sender] = 1000;
         totalSupply = 1000;
         name = "SpaceCoin";
-        decimals = 0;
+        decimals = 18;
         symbol = "SPACE";
     }
 

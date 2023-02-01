@@ -1,0 +1,38 @@
+const {
+    ethers
+} = require("hardhat");
+
+require("dotenv").config({
+    path: ".env"
+});
+
+const provider = new ethers.providers.JsonRpcProvider(process.env.CHAINSTACK_FILECOIN_RPC)
+
+async function main() {
+
+    const feeData = await provider.getFeeData();
+    const maxPriorityFeePerGas = feeData.maxPriorityFeePerGas
+
+
+    const coinFile = await ethers.getContractFactory("CoinFile")
+
+    console.log(`Deploying smart contract...`)
+    const deployedCoinFile = await coinFile.deploy({ maxPriorityFeePerGas })
+
+    await deployedCoinFile.deployed()
+
+    console.log(`The smart contract was deployed at: ${deployedCoinFile.address}`);
+
+    const owner = await deployedCoinFile.owner()
+    console.log(`The owner is ${owner}`)
+
+}
+
+
+main()
+    .then(() => process.exit(0))
+    .catch((error) => {
+        console.error(error)
+        process.exit(1)
+
+    })
