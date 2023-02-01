@@ -8,37 +8,40 @@
 
 Project goal to to deploy a Dex dapp on FVM powered by uniswap. 
 
-    - Create & run local FVM hyperspace testnet node on ChainStack
-        ```
-        HTTPS endpoint: https://nd-998-437-463.p2pify.com/rpc/v0
+Create & run local FVM hyperspace testnet node on ChainStack.
 
-        WSS Endpoint: wss://ws-nd-998-437-463.p2pify.com/rpc/v0
+```
+    HTTPS endpoint: https://nd-998-437-463.p2pify.com/rpc/v0
 
-        ```
-    - code & deploy ERC20 token on FVM hyperspace
-    ```
+    WSS Endpoint: wss://ws-nd-998-437-463.p2pify.com/rpc/v0
+
+ ```
+
+Create  & deploy ERC20 token on FVM hyperspace
+
+```
     Hash: 0x612598ee64b0f241319c66df775a428218fc892636d739e6a3312508020019ee
 
     Space Coin (SPACE) Contract: 0xA9783DBDB4E3465A2CFA74f5F5c2b61e755f3b99
 
-    ```
+```
 
         
-    - code & deploy ERC20 token on FVM hyperspace
+Create & deploy ERC20 token on FVM hyperspace
         // (DataToken - DATA)reward token earned by stakers [FIL+SPACE] = pool
         // write unit test
         // DATA tokens are redeemable for perpetual storage in lighthouse protocol
 
-    - clone Uniswap v2.0 and connect to nodes using CRANQ diagrams
+Clone Uniswap v2.0 and connect to nodes using CRANQ diagrams
         // deploy in testnet
 
-    - design simple prototype app using ReactJs.
+Design simple prototype app using ReactJs.
         // write the initial scripst to connect front end / wallet 
 
-    - create liquidity pool pair = FIL/SPACE
+Create liquidity pool pair = FIL/SPACE
         // test and deploy
 
-    - create 2 min presentation for hackathon is everthing runs smoothly 
+Create 2 min presentation for hackathon is everthing runs smoothly 
 
     
 
