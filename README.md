@@ -1,9 +1,13 @@
-# FVM Hardhat Kit to build on Filecoin Virtual Machine
-#  HyperSpace testnet hackathon by EthGLobal Jan 2023
+# ETHGlobal Space 🛸 Warp hackathon
 
-##  (experimental code only )
+## Creating a Dapp Dex powered by (Uniswap v2.0) 
+## run on FVM hyperspace testnet, deploy token,
+## create FIL+SPACE pair in LP
 
-## Team Members: guess im doing this solo as others dropped out @0xwaya#6613
+
+###  (experimental code only )
+
+### Dev:  @0xwaya
 
 
 Project goal to to deploy a Dex dapp on FVM powered by uniswap. 
