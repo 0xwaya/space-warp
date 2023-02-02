@@ -22,20 +22,16 @@ Create & run local FVM hyperspace testnet node on ChainStack.
 
  ```
 
-Create  & deploy ERC20 token on FVM hyperspace
+Create  & deploy SpaceCoin ERC20 token on the Chainstack Filecoin hyperspace orion node
 
 ```
-    Hash: 0x07bde1b72daf8b9f4f49928e3e27a5fecb7542f03d48e2b994ab8811115916cc
+    Hash: 0x54510eb3bb6020dd3d22eb2ddaec6c6c15f4ea8861fd77085a87adf78356f82b
 
-    Space Coin (SPACE) Contract: 0x3954Faf33315F812A5d55E31E93b3A75A69033aB
+    Space Coin (SPACE) Contract: 0x97Be9d60712b464B26e34b90A4b9324DF435C63c
 
-    Robust Address: t410fhfkpv4ztcx4bfjovlyy6soz2owtjam5leidgl6i
+    Actor Code: bafy2bzaceccwo7edpu2ws23rn35lfjhyv2uxvb4hkftshospktcbandiyco3k
 
-    ID address: t06049
-
-    Actor Code: bafk2bzacea6etsvrqejjl7uej5dxlswja5gxzqyggsjjvg27timvtiedf7nsg
-
-    Explorer: https://explorer.glif.io/address/0x3954Faf33315F812A5d55E31E93b3A75A69033aB/?network=hyperspacenet
+    Explorer: https://beryx.zondax.ch/v1/search/fil/hyperspace/transactions/0x54510eb3bb6020dd3d22eb2ddaec6c6c15f4ea8861fd77085a87adf78356f82b
 
 ```
 
