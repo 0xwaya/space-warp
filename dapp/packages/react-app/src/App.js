@@ -1,7 +1,7 @@
 import React from "react"
 
 const App = () => {
-  return <p>Hello, Web3!</p>
+  return <p>SPACESWAP V0.1</p>
 }
 
 export default App;
