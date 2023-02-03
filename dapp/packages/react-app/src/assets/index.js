@@ -1,5 +1,5 @@
 import chevronDown from "./chevron-down.svg";
 import ethereumLogo from "./ethereumLogo.png";
-import uniswapLogo from "./uniswapLogo.png";
+import spaceswapLogo from "./spaceswapLogo.png";
 
-export { chevronDown, ethereumLogo, uniswapLogo };
+export { chevronDown, ethereumLogo, spaceswapLogo };
