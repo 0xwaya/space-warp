@@ -64,7 +64,7 @@ In the project directory, you can run:
 
 ### React App
 
-#### `yarn react-app:start`
+#### `yarn`
 
 Runs the React app in development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.

@@ -8,8 +8,8 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract SpaceSwapToken is ERC20, ERC20Burnable, Pausable, Ownable {
-    constructor() ERC20("SpaceCoin", "SPACE") {
+contract FilecoinMock is ERC20, ERC20Burnable, Pausable, Ownable {
+    constructor() ERC20("FileToken", "FILE") {
     }
 
     function mint(address to, uint256 amount) public onlyOwner {
