@@ -934,7 +934,7 @@
     table "^6.8.0"
     undici "^5.14.0"
 
-"@nomiclabs/hardhat-truffle5@^2.0.0", "@nomiclabs/hardhat-truffle5@^2.0.7":
+"@nomiclabs/hardhat-truffle5@^2.0.0":
   version "2.0.7"
   resolved "https://registry.npmjs.org/@nomiclabs/hardhat-truffle5/-/hardhat-truffle5-2.0.7.tgz"
   integrity sha512-Pw8451IUZp1bTp0QqCHCYfCHs66sCnyxPcaorapu9mfOV9xnZsVaFdtutnhNEiXdiZwbed7LFKpRsde4BjFwig==

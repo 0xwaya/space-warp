@@ -30,9 +30,7 @@
     "prettier": "^2.4.1",
     "prettier-plugin-solidity": "^1.0.0-beta.19",
     "solhint": "^3.3.6",
-    "solidity-coverage": "^0.7.22"
-  },
-  "dependencies": {
+    "solidity-coverage": "^0.7.22",
     "@chainlink/contracts": "^0.6.0",
     "@ethersproject/abi": "^5.7.0",
     "@ethersproject/providers": "^5.7.2",
