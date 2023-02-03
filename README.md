@@ -29,9 +29,7 @@ Create  & deploy SpaceCoin ERC20 token on the Chainstack Filecoin hyperspace ori
 
     Space Coin (SPACE) Contract: 0x97Be9d60712b464B26e34b90A4b9324DF435C63c
 
-    Actor Code: bafy2bzaceccwo7edpu2ws23rn35lfjhyv2uxvb4hkftshospktcbandiyco3k
-
-    Explorer: https://beryx.zondax.ch/v1/search/fil/hyperspace/transactions/0x54510eb3bb6020dd3d22eb2ddaec6c6c15f4ea8861fd77085a87adf78356f82b
+    "tx_hash": bafy2bzaceccwo7edpu2ws23rn35lfjhyv2uxvb4hkftshospktcbandiyco3k
 
 ```
 
