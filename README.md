@@ -36,10 +36,17 @@ Create  & deploy SpaceCoin ERC20 token on the Chainstack Filecoin hyperspace ori
 ```
 
         
-Create & deploy ERC20 token on FVM hyperspace
-        // (DataToken - DATA)reward token earned by stakers [FIL+SPACE] = pool
-        // write unit test
-        // DATA tokens are redeemable for perpetual storage in lighthouse protocol
+Create & deploy FilecoinMock ERC20 token on FVM hyperspace
+
+```
+    Hash: 0xcb4518e3864eca3b5a4f527439562c733645babd4f7cb75a34281be5e80d8eb5
+
+    FileToken (FILE) Contract: 0x199656acC1A537Cc55c12fa35750b8d390eDABd2
+
+     "tx_hash": bafy2bzacebykggxo7xf7tzm4g7muzlp2drqchlh3cehkrt6odduhm3sbi7gkk
+
+
+```
 
 Clone Uniswap v2.0 and connect to nodes using CRANQ diagrams
         // deploy in testnet
