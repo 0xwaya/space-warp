@@ -2,7 +2,7 @@
  * See all ids below
  * https://ethereum.stackexchange.com/questions/17051/how-to-select-a-network-id-or-is-there-a-list-of-network-ids
  */
-export const FILECOIN_ID = 314;
+export const HYPERSPACE_ID = 3141;
 
 const commonContracts = {
   factory: "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f",
@@ -11,7 +11,7 @@ const commonContracts = {
 };
 
 export default {
-  [FILECOIN_ID]: {
+  [HYPERSPACE_ID]: {
     pairs: {
       "DAI-WETH": " ",
     },
