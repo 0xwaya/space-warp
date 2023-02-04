@@ -1,7 +1,7 @@
 import React from "react"
 
 const App = () => {
-  return <p>SPACESWAP V0.1</p>
+  return <p>HELLO SPACESWAP</p>
 }
 
 export default App;
