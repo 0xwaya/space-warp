@@ -1,5 +1,5 @@
 import chevronDown from "./chevron-down.svg";
-import filecoinLogo from "./filecoinLogo.png";
+import fvmfilecoinLogo from "./fvmfilecoinLogo.png";
 import spaceswapLogo from "./spaceswapLogo.png";
 
-export { chevronDown, filecoinLogo, spaceswapLogo };
+export { chevronDown, fvmfilecoinLogo, spaceswapLogo };
