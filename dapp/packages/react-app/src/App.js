@@ -1,9 +1,9 @@
 import React from "react"
 import { useEthers } from '@usedapp/core';
 
-import styles from './styles';
+import styles from '../styles';
 import { spaceswapLogo } from './assets';
-
+import { Exchange, Loader, WalletButtom } from './components';
 const App = () => {
   const { Account } = useEthers();
   const poolsLoading = false;
@@ -30,18 +30,17 @@ const App = () => {
               <div className={styles.exchangeContainer}>
                 <div className="orange_gradient" />
                 <div className={styles.exchange}>
-                  {account ? (
+                  {Account ? (
                     poolsLoading ? (
-                      <Loader />
+                      <Loader title="Loading pools, please wait!" />
                     ) : <Exchange />
-                  ) : <Loader />}
+                  ) : <><Loader title="Please connect your wallet" />
+                    <div className="blue_gradient" /></>};
                 </div>
-                <div className="blue_gradient" />
               </div>
             </div>
-          </div >
-          )
-  }
-
-
-          export default App;
+          </div>
+        </div>
+      </div>
+      )
+      export default App;
