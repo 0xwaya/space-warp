@@ -5,8 +5,10 @@ import styles from './styles';
 import { spaceswapLogo } from './assets';
 
 const App = () => {
-  return (
+  const { Account } = useEthers();
+  const poolsLoading = false;
 
+  return (
     <div className={styles.container}>
       <div className={styles.innerContainer}>
         <header className={styles.header}>
@@ -16,19 +18,32 @@ const App = () => {
             className="w-16 h-16
             object-contain"
           />
-          WalletButton
+          <WalletButton />
         </header>
 
         <div className={styles.exchangeContainer}>
           <h1 className={styles.headTitle}>Spaceswap beta-0.1</h1>
-          <p>
+          <p className={styles.subTitle}> Add liquidity to Filecoin FVM</p>
 
-          </p>
-        </div>
-      </div>
-    </div >
-  )
+          <div className={styles.exchangeBoxWrapper}>
+            <div className={styles.exchangeBox}>
+              <div className={styles.exchangeContainer}>
+                <div className="orange_gradient" />
+                <div className={styles.exchange}>
+                  {account ? (
+                    poolsLoading ? (
+                      <Loader />
+                    ) : <Exchange />
+                  ) : <Loader />
+                  }
+
+                </div>
+                <div className="blue_gradient" />
+              </div>
+            </div>
+          </div >
+          )
 }
 
 
-export default App;
+          export default App;
