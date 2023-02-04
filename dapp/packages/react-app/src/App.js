@@ -34,16 +34,14 @@ const App = () => {
                     poolsLoading ? (
                       <Loader />
                     ) : <Exchange />
-                  ) : <Loader />
-                  }
-
+                  ) : <Loader />}
                 </div>
                 <div className="blue_gradient" />
               </div>
             </div>
           </div >
           )
-}
+  }
 
 
           export default App;
