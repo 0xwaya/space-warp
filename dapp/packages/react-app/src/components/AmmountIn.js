@@ -20,14 +20,13 @@ const AmmountIn = () => {
 
             <div className='relative' onClick={() => setShowList
                 ((prevState) => !prevState)}>
-                <button className={styles.currencyButtom}>
+                <button className={styles.currencyButton}>
                     {'ETH'}
                     <img
-                        src=(chevronDown)
-                    alt='chevron down'
-                    className={'w-4 h-4 object-contain ml-2 ${showList ?
-                     'rotate-180' : 'rotate-0'}'} 
-                     />
+                        src={chevronDown}
+                        alt='chevron down'
+                        className={'w-4 h-4 object-contain ml-2 ${showList ? "rotate-180" : "rotate-0"}'}
+                    />
                 </button>
                 {showList && (
                     <ul className={styles.currencyList}>
@@ -37,14 +36,15 @@ const AmmountIn = () => {
                         ].map(({ token, tokenName }, index) => (
                             <li
                                 key={index}
-                                className={'${styles.currencyListItem} ${true ?
-                                'bg-site-dim2' : ''} cursor-pointer'}
+                                className={`${styles.currencyListItem} ${true ?
+                                    'bg-site-dim2' : ''} cursor-pointer`}
                             >
-                        {tokenName}
-                    </li>
-                ))}
-            </ul>
-            )}
+                                {tokenName}
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
         </div>
 
 
