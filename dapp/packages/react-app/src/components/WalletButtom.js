@@ -1,6 +1,5 @@
-import React from 'react'
-import { shortenAddress, useEthers, useLookupAddress } from "@usedapp/core";
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from 'react'
+import { shortenAddress, useEthers, useLookupAddress } from '@usedapp/core';
 
 import styles from '../styles';
 
@@ -29,9 +28,9 @@ const WalletButtom = () => {
                     deactivate();
                 }
             }}
-            className={styles.walletButton}
+            className={styles.walletButtom}
         >
-            accountAddress || "Connect Wallet")
+            {accountAddress || "Connect Wallet"}
         </button>
     )
 }
