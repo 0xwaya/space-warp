@@ -1,4 +1,4 @@
-import chevronDown from "./chevron-down.svg";
+import chevronDown from "./chevronDown.svg";
 import fvmfilecoinLogo from "./fvmfilecoinLogo.png";
 import spaceswapLogo from "./spaceswapLogo.png";
 

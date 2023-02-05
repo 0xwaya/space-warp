@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { Contract } from '@ethersproject/contracts';
 import { abis } from '@my-app/contracts';
 import { ERC20, useContractFunction, useEthers, useToken, useTokenAllowance, useTokenBalance } from '@usedapp/core';
@@ -34,34 +34,107 @@ const fromValueIsGreaterThan0 = fromValueBigNumber.gt(parseUnits("0"));
 const hasEnoughBalance = fromValueBigNumber.lte(fromTokenBalance ??
     parseUnits("0"));
 
+const { state: swapApproveState, send: swapApproveSend } =
+    useContractFunction(fromTokenContract, "approve", {
+        transactionName: "onApproveRequested",
+        getLimitBufferPercentage: 10,
+    });
 
-const isApproving = isOperationPending('approve'); // TODO
-const isSwapping = isOperationPending('swap') // TODO
+const { state: swapExecuteState, send: swapExecuteSend } =
+    useContractFunction(routerContract, "swapExactTokensForTokens", {
+        transactionName: "swarpExactTokensForTokens",
+        getLimitBufferPercentage: 10,
+    });
 
-// const getSuccessMessage = getSuccessMessage(); //todo
-// const getFailureMessage = getFailureMessage(); //todo
 
+const isApproving = isOperationPending(swapApproveState);
+const isSwapping = isOperationPending(swapExecuteState);
+const canApprove = !isApproving && approvedNeeded;
+const canSwap = !approvedNeeded && !isSwapping &&
+    fromValueIsGreaterThan0 && hasEnoughBalance;
+
+const successMessage = getSuccessMessage(swapApproveState,
+    swapApproveState);
+const failureMessage = getFailureMessage(swapApproveState,
+    swapExecuteState);
+
+const onApproveRequested = () => {
+    swapApproveSend(ROUTER_ADDRESS, ethers.constants.MaxUint256);
+}
+const onSwapRequested = () => {
+    swapExecuteSend(
+        fromValueBigNumber,
+        0,
+        [fromToken, toToken],
+        account,
+        math.floor(Date.now() / 1000) + 60 * 2
+    ).then(() => {
+        setFromValue("0");
+    })
+}
+
+const onFromValueChange = (value) => {
+    const trimmedValue = value.trim();
+
+    try {
+        if (trimmedValue) {
+            parseUnits(value);
+
+            setFromValue(value);
+        }
+    }
+
+    const onFromTokenChange = (value) => {
+        setFromToken(value);
+    }
+
+    const onToTokenChange = (value) => {
+        setToToken(value);
+    }
+
+    useEffect(() => {
+        if (failureMessage || successMessage) {
+            setTimeout(() => {
+                setResetState(true);
+                setFromValue("0");
+                setToToken("");
+            }, 5000)
+        }
+    }, [failureMessage, successMessage]);
+
+}
 return (
     <div className='flex, flex-col w-full items-center'>
         <div className='mb-8'>
             <AmmountIn
+                value={fromValue}
+                onChange={fromValueChange}
+                currencyValue={fromToken}
+                onSelect={onFromTokenChange}
+                currencies={availableTokens}
+                inSwapping={isSwapping && hasEnoughBalance} />
 
-            />
-            <Balance />
+            <Balance tokenBalance={fromTokenBalance} />
         </div>
         <div className='mb-8 w-[100%]'>
             <AmmountOut
-
+                fromToken={fromToken}
+                toToken={toToken}
+                ammountIn={fromValueBigNumber}
+                pairContract={pairAddress}
+                currencyValue={toToken}
+                onSelect={onToTokenChange}
+                currencies={counterpartTokens}
             />
-            <Balance />
+            <Balance tokenBalance={toTokenBalance} />
         </div>
 
-        {"approveNeeded" && !isSwapping ? (
+        {approvedNeeded && !isSwapping ? (
             <button
-                disabled={!"canApprove"}
-                onClick={() => { }}
+                disabled={!canApprove}
+                onClick={onApproveRequested}
                 className={
-                    `${"canApprove"
+                    `${canApprove
                         ? "bg-site-pink text-white"
                         : "bg-site-pink text-site-dim2"
                             `${styles.actionButton}`
@@ -69,27 +142,26 @@ return (
                 {isApproving ? "Approving..." : "Approve"}
             </button>
         ) : <button
-            disabled={!"canSwap"}
-            onClick={() => { }}
+            disabled={!canSwap}
+            onClick={onSwapRequested}
             className={
-                `${"canSwap"
+                `${canSwap
                     ? "bg-site-pink text-white"
                     : "bg-site-pink text-site-dim2"
                         `${styles.actionButton}`
                 }`}>
-            {isSwapping ? "swapping..." : "hasEnoughBalance"}
+            {isSwapping ? "swapping..." : hasEnoughBalance}
             {"swap" : "Insufficient balance"}
         </button>
         }
         {
-            "failureMessage" && !"resetState" ? (
-                <p className={styles.message}>{"failureMessage"}</p>
-            ) : "successMessage" ? (
-                <p className={styles.message}>{"successMessage"}</p>
-            ) : ""
-        }
-
-    </div >
+            { failureMessage && !resetState ? (
+                <p className={styles.message}>{failureMessage}</p>
+            ) : successMessage ? (
+                <p className={styles.message}>{successMessage}</p>
+            ) : ""}
+            }
+    </div>
 )
 
 export default Exchange
