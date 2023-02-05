@@ -10,7 +10,7 @@ const Loader = () => {
                 src={fvmfilecoinLogo}
                 alt="fvm logo"
                 className={styles.loaderImg} />
-            <p className={styles.loaderText}>{title}</p>
+            <p className={styles.loaderText}>loading, please wait</p>
         </div>
 
     )

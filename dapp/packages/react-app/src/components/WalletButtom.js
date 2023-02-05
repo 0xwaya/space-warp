@@ -3,7 +3,6 @@ import { shortenAddress, useEthers, useLookupAddress } from "@usedapp/core";
 import { useEffect, useState } from "react"
 
 import styles from '../styles';
-import { render } from 'react';
 
 const WalletButtom = () => {
     const [accountAddress, setAccountAddress] = useState('');

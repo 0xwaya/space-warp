@@ -18,7 +18,7 @@ const App = () => {
             alt="spaceswap logo"
             className="w-16 h-16
             object-contain" />
-          <WalletButton />
+          <walletButton />
 
         </header>
 
