@@ -3,12 +3,22 @@ import { shortenAddress, useEthers, useLookupAddress } from "@usedapp/core";
 import { useEffect, useState } from "react"
 
 import styles from '../styles';
-import { render } from 'react-dom';
+import { render } from 'react';
 
 const WalletButtom = () => {
-    const [rendered, setRendered] = useState('');
+    const [accountAddress, setAccountAddress] = useState('');
     const { ens } = useLookupAddress();
     const { account, activateBrowserWallet, deactivate } = useEthers();
+
+    useEffect(() => {
+        if (ens) {
+            setAccountAddress(ens);
+        } else if (account) {
+            setAccountAddress(shortenAddress(account));
+        } else {
+            setAccountAddress('')
+        }
+    }, [account, ens, setAccountAddress])
 
     return (
 
@@ -22,9 +32,7 @@ const WalletButtom = () => {
             }}
             className={styles.walletButton}
         >
-            {rendered === "" && "Connect Wallet"}
-            {rendered !== "" && rendered}
-
+            accountAddress || "Connect Wallet")
         </button>
     )
 }
