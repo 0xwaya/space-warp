@@ -19,7 +19,7 @@ const styles = {
     "flex justify-between items-center flex-row w-full min-w-full bg-site-dim border-[1px] border-transparent hover:border-site-dim2 min-h-[96px] sm:p-8 p-4 rounded-[20px]",
   amountInput:
     "w-full flex-1 bg-transparent outline-none font-poppins font-black text-2xl text-white",
-  currencyButtom:
+  currencyButton:
     "flex flex-row items-center bg-site-dim2 py-2 px-4 rounded-xl font-poppins font-bold text-white",
   currencyList:
     "absolute z-10 right-0 bg-site-black border-[1px] border-site-dim2 w-full mt-2 rounded-lg min-w-[170px] overflow-hidden",
@@ -27,12 +27,12 @@ const styles = {
     "font-poppins font-medium text-base text-white hover:text-dim-white px-5 py-3 hover:bg-site-dim2 cursor-pointer",
 
   // Exchange
-  actionButtom:
+  actionButton:
     "border-none outline-none px-6 py-2 font-poppins font-bold text-lg rounded-2xl leading-[24px] transition-all min-h-[56px]",
   message: "font-poppins font-lg text-white font-bold mt-7",
 
-  // WalletButtom
-  walletButtom:
+  // WalletButton
+  walletButton:
     "bg-site-pink border-none outline-none px-6 py-2 font-poppins font-bold text-lg text-white rounded-3xl leading-[24px] hover:bg-pink-600 transition-all",
 
   // loader

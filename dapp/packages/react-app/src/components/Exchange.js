@@ -5,12 +5,18 @@ import { ERC20, useContractFunction, useEthers, useToken, useTokenAllowance, use
 import { ethers } from 'ethers/lib/utils';
 import { parseUnits } from 'ethers/lib/utils';
 
-import { gestAvailableToken, getCounterpartTokens, findPoolByTokens, isOperationPending, getFailureMessage, getSuccessMessage } from '../utils';
+import { getAvailableToken, getCounterpartTokens, findPoolByTokens, isOperationPending, getSuccessMessage, getFailureMessage } from '../utils';
 import { ROUTER_ADDRESS } from '../config';
 import { AmmountIn, AmmountOut, Balance } from './';
 import styles from '../styles';
 
 const Exchange = (pools) => {
+    const isApproving = isOperationPending('approve'); // TODO
+    const isSwapping = isOperationPending('swap') // TODO
+
+    // const getSuccessMessage = getSuccessMessage(); //todo
+    // const getFailureMessage = getFailureMessage(); //todo
+
     return (
         <div className='flex, flex-col w-full items-center'>
             <div className='mb-8'>
@@ -25,8 +31,42 @@ const Exchange = (pools) => {
                 />
                 <Balance />
             </div>
-        </div>
+
+            {"approveNeeded" && !isSwapping ? (
+                <button
+                    disabled={!"canApprove"}
+                    onClick={() => { }}
+                    className={
+                        `${"canApprove"
+                            ? "bg-site-pink text-white"
+                            : "bg-site-pink text-site-dim2"
+                                `${styles.actionButton}`
+                        }`}>
+                    {isApproving ? "Approving..." : "Approve"}
+                </button>
+            ) : <button
+                disabled={!"canSwap"}
+                onClick={() => { }}
+                className={
+                    `${"canSwap"
+                        ? "bg-site-pink text-white"
+                        : "bg-site-pink text-site-dim2"
+                            `${styles.actionButton}`
+                    }`}>
+                {isSwapping ? "swapping..." ; "hasEnoughBalance" }
+                "swap" : "Insufficient balance"}
+            </button>
+            }
+            {
+                "failureMessage" && !"resetState" ? (
+                    <p className={styles.message}>{"failureMessage"}</p>
+                ) "successMessage" ? (
+            <p className={styles.message}>{"successMessage"}</p>
+            ) : ""
+}
+
+        </div >
     )
 }
 
-export default Exchange;
+export default Exchange
