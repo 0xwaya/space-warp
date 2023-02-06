@@ -24,7 +24,7 @@ const App = () => {
         </header>
 
         <div className={styles.exchangeContainer}>
-          <h1 className={styles.headTitle}>Spaceswap beta-0.1</h1>
+          <h1 className={styles.headTitle}>Spaceswap beta-V.1</h1>
           <p className={styles.subTitle}> Add liquidity to Filecoin FVM</p>
 
           <div className={styles.exchangeBoxWrapper}>

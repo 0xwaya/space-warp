@@ -5,19 +5,19 @@
 export const HYPERSPACE_ID = 3141;
 
 const commonContracts = {
-  factory: "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f",
-  router01: "0xf164fC0Ec4E93095b804a4795bBe1e041497b92a",
-  router02: "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+  factory: "0x73372C04C14f91862045A8a67D724e894e9ba5ca",
+  router02: "0xB9491aef6f4d742ad7f648EF43baE3dA6b5e6F1D",
 };
 
 export default {
   [HYPERSPACE_ID]: {
     pairs: {
-      "DAI-WETH": " ",
+      "FILE-SPACE": "0x93d544bfeE90C7c69f1Fbb6024255283D8135C6C",
     },
     tokens: {
-      DAI: "0x697Ed3E98aaeCFa3121F536251F9D500de159dBa",
-      WETH: "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
+      FILE: "0x2548323B2AfBABbc89206A81786d6D075b382735",
+      SPACE: "0x9b7aF8E07B846519c6f811880B21Df947f55B057",
+
     },
     ...commonContracts,
   },

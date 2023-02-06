@@ -1,7 +1,7 @@
 {
-  "name": "space-warp",
+  "name": "spacewap",
   "version": "1.0.0",
-  "description": "",
+  "description": "Dex on FVM",
   "scripts": {
     "compile": "hardhat compile",
     "test": "hardhat test test/unit/*_test.js --network hardhat",
