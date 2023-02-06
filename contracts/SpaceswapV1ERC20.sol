@@ -15,7 +15,7 @@ contract SpaceswapV1ERC20 is IUniswapV2ERC20 {
 
     bytes32 public DOMAIN_SEPARATOR;
     //keccak256("Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)");
-    bytes32 public constant PERMIT_TYPEHASH = 0x5a8823334aec962a1141fca88a3e0c4c5e41922c2a0de8bd8b841ee5acd71ea4;
+    bytes32 public constant PERMIT_TYPEHASH = 0x473753b9a4879325c025b6f8f2166882eaf7319fe2672bd290c94744d61032b8;
     mapping(address => uint) public nonces;
 
     event Approval(address indexed owner, address indexed spender, uint value);

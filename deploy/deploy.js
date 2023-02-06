@@ -15,7 +15,7 @@ async function callRpc(method, params) {
     var options = {
         method: "POST",
         url: [process.env.CHAINSTACK_FILECOIN_RPC],
-        // url: "https://api.hyperspace.node.glif.io/rpc/v1",
+        // url: "https://nd-998-437-463.p2pify.com/rpc/v0",
         headers: {
             "Content-Type": "application/json",
         },
