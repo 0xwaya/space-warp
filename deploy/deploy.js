@@ -9,7 +9,7 @@ require("dotenv").config({
 const util = require("util")
 const request = util.promisify(require("request"))
 const { networkConfig } = require("../helper-hardhat-config")
-const PRIVATE_KEY = process.env.PRIVATE_KEY;
+const PRIVATE_KEY = process.env.DEPLOYER_PRIVATE_KEY;
 
 async function callRpc(method, params) {
     var options = {
