@@ -34,15 +34,16 @@ Create  & deploy SpaceCoin ERC20 token on the Chainstack Filecoin hyperspace ori
 ```
 
         
-Create & deploy FilecoinMock ERC20 token on FVM hyperspace
+Create & deploy FILEcoinMOCK  ERC20 token on FVM hyperspace and created LP pair
 
 ```
-    Hash: 0xcb4518e3864eca3b5a4f527439562c733645babd4f7cb75a34281be5e80d8eb5
+   {
+	FILE V1  Contract: “ 0x2548323B2AfBABbc89206A81786d6D075b382735 ”             
 
-    FileToken (FILE) Contract: 0x199656acC1A537Cc55c12fa35750b8d390eDABd2
+	SPACE V1 Contract: “ 0x9b7aF8E07B846519c6f811880B21Df947f55B057 ”
 
-     "tx_hash": bafy2bzacebykggxo7xf7tzm4g7muzlp2drqchlh3cehkrt6odduhm3sbi7gkk
-
+	FILEV1 + SPACE V1 =  LP pair = “ 0x93d544bfeE90C7c69f1Fbb6024255283D8135C6C  “
+}
 
 ```
 
