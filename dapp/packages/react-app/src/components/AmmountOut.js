@@ -1,12 +1,12 @@
-import { CurrencyValue } from '@usedapp/core';
-import { formatUnits } from 'ethers/lib/utils';
 import React, { useState, useEffect, useRef } from 'react'
+import { currencyValue } from '@usedapp/core';
+import { formatUnits } from 'ethers/lib/utils';
 
 import { chevronDown } from '../assets';
 import styles from '../styles';
 import { useOnClickOutside, useAmountOut, useAmountsOut } from '../utils';
 
-const AmmountOut = ({ fromToken, toToken, amountIn,
+const AmountOut = ({ fromToken, toToken, amountIn,
     currencyValue, onselect, currencies }) => {
     const [showList, setShowList] = useState(false);
     const [activeCurrency, setActiveCurrency] = useState("select");
@@ -36,7 +36,7 @@ const AmmountOut = ({ fromToken, toToken, amountIn,
             />
 
             <div className='relative' ref={ref} onClick={() => setShowList((prevState) => !prevState)}>
-                <button className={styles.currencyButtom}>
+                <button className={styles.currencyButton}>
                     {activeCurrency}
                     <img
                         src={chevronDown}
@@ -46,8 +46,7 @@ const AmmountOut = ({ fromToken, toToken, amountIn,
                 </button>
                 {showList && (
                     <ul ref={ref} className={styles.currencyList}>
-                        {object.entries(currencies).map(([token, tokenName],
-                            index) =>
+                        {object.entries(currencies).map(([token, tokenName], index) => (
                             <li
                                 key={index}
                                 className={styles.currencyListItem}
@@ -60,6 +59,7 @@ const AmmountOut = ({ fromToken, toToken, amountIn,
                                 {tokenName}
                             </li>
                         ))}
+                        ^
                     </ul>
                 )}
             </div>
@@ -68,4 +68,4 @@ const AmmountOut = ({ fromToken, toToken, amountIn,
     )
 }
 
-export default AmmountOut
+export default AmountOut

@@ -4,7 +4,7 @@ import { chevronDown } from '../assets';
 import styles from '../styles';
 import { useOnClickOutside } from '../utils';
 
-const AmmountIn = ({ value, onChange, currencyValue, onSelect, currencies, isSwapping }) => {
+const AmountIn = ({ value, onChange, currencyValue, onSelect, currencies, isSwapping }) => {
     const [showList, setShowList] = useState = (false);
     const [activeCurrency, setActiveCurrency] = useState("select");
     const ref = useRef();
@@ -43,12 +43,12 @@ const AmmountIn = ({ value, onChange, currencyValue, onSelect, currencies, isSwa
                 {showList && (
                     <ul ref={ref} className={styles.currencyList}>
                         {object.entries(currencies).map(([token, tokenName], index) => (
-                            <li
+                            < li
                                 key={index}
                                 className={`${styles.currencyListItem} $
                                 {activeCurrency === tokenName ?
                                     'bg-site-dim2' : ''} cursor-pointer`}
-
+                            >
                                 onClick={() => {
                                     if (typeof onSelect === "function") onSelect(token);
                                     setActiveCurrency(tokenName);
@@ -61,8 +61,8 @@ const AmmountIn = ({ value, onChange, currencyValue, onSelect, currencies, isSwa
                     </ul>
                 )}
             </div>
-        </div>
+        </div >
     )
 }
 
-export default AmmountIn
+export default AmountIn

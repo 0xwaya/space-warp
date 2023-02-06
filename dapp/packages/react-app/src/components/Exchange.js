@@ -9,7 +9,7 @@ import { getAvailableToken, getCounterpartTokens, findPoolByTokens, isOperationP
 import { ROUTER_ADDRESS } from '../config';
 import { AmmountIn, AmmountOut, Balance } from './';
 import styles from '../styles';
-import console from 'console';
+
 
 const Exchange = (pools) => {
     const { account } = useEthers();
@@ -79,9 +79,11 @@ const onFromValueChange = (value) => {
     try {
         if (trimmedValue) {
             parseUnits(value);
-
-            setFromValue(value);
         }
+    } catch (err) {
+        // Handle error
+    } finally {
+        // Execute code regardless of the result of the try/catch block
     }
 
     const onFromTokenChange = (value) => {
@@ -102,66 +104,64 @@ const onFromValueChange = (value) => {
         }
     }, [failureMessage, successMessage]);
 
-}
-return (
-    <div className='flex, flex-col w-full items-center'>
-        <div className='mb-8'>
-            <AmmountIn
-                value={fromValue}
-                onChange={fromValueChange}
-                currencyValue={fromToken}
-                onSelect={onFromTokenChange}
-                currencies={availableTokens}
-                inSwapping={isSwapping && hasEnoughBalance} />
+    return (
+        <div className='flex, flex-col w-full items-center'>
+            <div className='mb-8'>
+                <AmmountIn
+                    value={fromValue}
+                    onChange={fromValueChange}
+                    currencyValue={fromToken}
+                    onSelect={onFromTokenChange}
+                    currencies={availableTokens}
+                    inSwapping={isSwapping && hasEnoughBalance} />
 
-            <Balance tokenBalance={fromTokenBalance} />
-        </div>
-        <div className='mb-8 w-[100%]'>
-            <AmmountOut
-                fromToken={fromToken}
-                toToken={toToken}
-                ammountIn={fromValueBigNumber}
-                pairContract={pairAddress}
-                currencyValue={toToken}
-                onSelect={onToTokenChange}
-                currencies={counterpartTokens}
-            />
-            <Balance tokenBalance={toTokenBalance} />
-        </div>
+                <Balance tokenBalance={fromTokenBalance} />
+            </div>
+            <div className='mb-8 w-[100%]'>
+                <AmmountOut
+                    fromToken={fromToken}
+                    toToken={toToken}
+                    ammountIn={fromValueBigNumber}
+                    pairContract={pairAddress}
+                    currencyValue={toToken}
+                    onSelect={onToTokenChange}
+                    currencies={counterpartTokens}
+                />
+                <Balance tokenBalance={toTokenBalance} />
+            </div>
 
-        {approvedNeeded && !isSwapping ? (
-            <button
-                disabled={!canApprove}
-                onClick={onApproveRequested}
+            {approvedNeeded && !isSwapping ? (
+                <button
+                    disabled={!canApprove}
+                    onClick={onApproveRequested}
+                    className={
+                        `${canApprove
+                            ? "bg-site-pink text-white"
+                            : "bg-site-pink text-site-dim2"
+                                `${styles.actionButton}`
+                        }`}>
+                    {isApproving ? "Approving..." : "Approve"}
+                </button>
+            ) : <button
+                disabled={!canSwap}
+                onClick={onSwapRequested}
                 className={
-                    `${canApprove
+                    `${canSwap
                         ? "bg-site-pink text-white"
                         : "bg-site-pink text-site-dim2"
                             `${styles.actionButton}`
                     }`}>
-                {isApproving ? "Approving..." : "Approve"}
+                {isSwapping ? "swapping..." : hasEnoughBalance ?
+                    "swap" : "Insufficient balance"}
             </button>
-        ) : <button
-            disabled={!canSwap}
-            onClick={onSwapRequested}
-            className={
-                `${canSwap
-                    ? "bg-site-pink text-white"
-                    : "bg-site-pink text-site-dim2"
-                        `${styles.actionButton}`
-                }`}>
-            {isSwapping ? "swapping..." : hasEnoughBalance}
-            {"swap" : "Insufficient balance"}
-        </button>
-        }
-        {
-            { failureMessage && !resetState ? (
+            }
+            {failureMessage && !resetState ? (
                 <p className={styles.message}>{failureMessage}</p>
             ) : successMessage ? (
                 <p className={styles.message}>{successMessage}</p>
             ) : ""}
-            }
-    </div>
-)
 
-export default Exchange
+        </div>
+    )
+}
+export default Exchange;
