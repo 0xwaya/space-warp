@@ -13,7 +13,8 @@
 
 Project goal to to deploy a Dex dapp on FVM powered by uniswap. 
 
-Create & run local FVM hyperspace testnet node on ChainStack.
+
+* Create & running FVM hyperspace testnet node on ChainStack. (Orion-node)
 
 ```
     HTTPS endpoint: https://nd-998-437-463.p2pify.com/rpc/v0
@@ -22,33 +23,52 @@ Create & run local FVM hyperspace testnet node on ChainStack.
 
  ```
 
-Create  & deploy SpaceCoin ERC20 token on the Chainstack Filecoin hyperspace orion node
+
+* Created SpaceCoinV1 and deployed on FVM.
 
 ```
-    Hash: 0x54510eb3bb6020dd3d22eb2ddaec6c6c15f4ea8861fd77085a87adf78356f82b
-
-    Space Coin (SPACE) Contract: 0x97Be9d60712b464B26e34b90A4b9324DF435C63c
-
-    "tx_hash": bafy2bzaceccwo7edpu2ws23rn35lfjhyv2uxvb4hkftshospktcbandiyco3k
-
-```
-
-        
-Create & deploy FILEcoinMOCK  ERC20 token on FVM hyperspace and created LP pair
-
-```
-   {
-	FILE V1  Contract: “ 0x2548323B2AfBABbc89206A81786d6D075b382735 ”             
 
 	SPACE V1 Contract: “ 0x9b7aF8E07B846519c6f811880B21Df947f55B057 ”
 
-	FILEV1 + SPACE V1 =  LP pair = “ 0x93d544bfeE90C7c69f1Fbb6024255283D8135C6C  “
-}
+```
+
+
+        
+* Created & deployed FILEcoinMOCK  ERC20 token on FVM.
 
 ```
 
-Clone Uniswap v2.0 and connect to nodes using CRANQ diagrams
-        // deploy in testnet
+	
+        FILE V1  Contract: “ 0x2548323B2AfBABbc89206A81786d6D075b382735 ”             
+
+
+```
+
+
+* Created & deployed SpaceswapFactoryV1.sol 
+
+```
+
+        Spaceswap V1 - FACTORY: “ 0x73372C04C14f91862045A8a67D724e894e9ba5ca “
+
+```
+
+
+* Created & deployed SpaceswapRouterV1.sol 
+
+```
+
+        Spaceswap V1 - ROUTER: “ 0xB9491aef6f4d742ad7f648EF43baE3dA6b5e6F1D “
+
+```
+
+* Created & deployed (FILE + SPACE) LP paircontract.
+
+```
+
+	FILEV1 + SPACE V1 =  LP PAIR = “ 0x93d544bfeE90C7c69f1Fbb6024255283D8135C6C  “
+
+```
 
 Design simple prototype app using ReactJs.
         // write the initial scripst to connect front end / wallet 
