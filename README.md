@@ -70,21 +70,11 @@ Project goal to to deploy a Dex dapp on FVM powered by uniswap.
 
 ```
 
-Design simple prototype app using ReactJs.
-        // write the initial scripst to connect front end / wallet 
-
-Create liquidity pool pair = FIL/SPACE
-        // test and deploy
-
-Create 2 min presentation for hackathon is everthing runs smoothly 
-
-    
 
 
 
-In terminal, create directory to store code in. once inside directory use this command:
 
-
+FOR EXPERIMENTAL USE ONLY!!!!!!
 
 ```
 git clone https://github.com/0xwaya/space.warp.git
