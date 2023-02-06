@@ -24,37 +24,34 @@ const AmountIn = ({ value, onChange, currencyValue, onSelect, currencies, isSwap
             <input
                 placeholder='0.0'
                 type="number"
-                value=""
+                value={value}
                 disabled={isSwapping}
                 onChange={(e) => typeof onChange === "function" && onChange(e.target.value)}
                 className={styles.amountInput}
             />
 
             <div className='relative' onClick={() => setShowList
-                ((prevState) => !prevState)}>
+                (prevState => !prevState)}>
                 <button className={styles.currencyButton}>
                     {activeCurrency}
                     <img
                         src={chevronDown}
                         alt='chevron down'
-                        className={'w-4 h-4 object-contain ml-2 ${showList ? "rotate-180" : "rotate-0"}'}
+                        className={`w-4 h-4 object-contain ml-2 ${showList ? "rotate-180" : "rotate-0"}`}
                     />
                 </button>
                 {showList && (
                     <ul ref={ref} className={styles.currencyList}>
-                        {object.entries(currencies).map(([token, tokenName], index) => (
-                            < li
+                        {Object.entries(currencies).map(([token, tokenName], index) => (
+                            <li
                                 key={index}
-                                className={`${styles.currencyListItem} $
-                                {activeCurrency === tokenName ?
-                                    'bg-site-dim2' : ''} cursor-pointer`}
-                            >
+                                className={styles.currencyListItem}
                                 onClick={() => {
                                     if (typeof onSelect === "function") onSelect(token);
                                     setActiveCurrency(tokenName);
                                     setShowList(false);
                                 }}
-
+                            >
                                 {tokenName}
                             </li>
                         ))}

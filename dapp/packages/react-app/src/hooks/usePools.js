@@ -18,7 +18,7 @@ export const loadPools = async (providerUrl) => {
 export const usePools = () => {
     const { readOnlyChainId, readOnlyUrls } = useConfig();
     const [loading, setLoading] = useState(true);
-    const [pools, setPools] = useState({});
+    const [pools, setPools] = useState(true);
 
     useEffect(() => {
         loadPools(readOnlyUrls[readOnlyChainId])

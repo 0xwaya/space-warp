@@ -16,7 +16,7 @@ const Exchange = (pools) => {
     const [fromValue, setFromValue] = useState("0");
     const [fromToken, setFromToken] = useState(pools[0])[0].token0Address
 };
-const [toToken, setToToken] = useState("");
+const [toToken, setToToken] = useState("balance");
 const [resetState, setResetState] = useState(false);
 
 const fromValueBigNumber = parseUnits(fromValue);
