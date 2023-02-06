@@ -24,7 +24,7 @@ const AmountIn = ({ value, onChange, currencyValue, onSelect, currencies, isSwap
             <input
                 placeholder='0.0'
                 type="number"
-                value={value}
+                value=""
                 disabled={isSwapping}
                 onChange={(e) => typeof onChange === "function" && onChange(e.target.value)}
                 className={styles.amountInput}
@@ -54,7 +54,7 @@ const AmountIn = ({ value, onChange, currencyValue, onSelect, currencies, isSwap
                                     setActiveCurrency(tokenName);
                                     setShowList(false);
                                 }}
-                            >
+
                                 {tokenName}
                             </li>
                         ))}
@@ -65,4 +65,4 @@ const AmountIn = ({ value, onChange, currencyValue, onSelect, currencies, isSwap
     )
 }
 
-export default AmountIn
+export default AmountIn;
