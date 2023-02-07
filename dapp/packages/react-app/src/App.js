@@ -3,7 +3,7 @@ import { useEthers } from '@usedapp/core';
 
 import { usePools } from './hooks';
 import styles from './styles/index';
-import { spaceswapLogo } from '../assets';
+import { spaceswapLogo } from '../src/assets';
 import { Exchange, Loader, WalletButtom } from './components';
 
 const App = () => {
