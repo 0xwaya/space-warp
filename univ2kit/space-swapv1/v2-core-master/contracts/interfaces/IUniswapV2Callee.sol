@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: MIT 
+// Author: Uniswap Team
+// Modified by: SpaceSwap Team
+
 pragma solidity >=0.5.0;
 
 interface IUniswapV2Callee {
