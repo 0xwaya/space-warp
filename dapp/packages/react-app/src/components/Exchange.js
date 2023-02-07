@@ -2,10 +2,6 @@ import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { Contract } from '@ethersproject/contracts';
 import { abis } from '@my-app/contracts';
 import { ERC20, useContractFunction, useEthers, useToken, useTokenAllowance, useTokenBalance } from '@usedapp/core';
-import { ethers } from 'ethers/lib/utils';
-import { parseUnits } from 'ethers/lib/utils';
-import { math } from 'polished';
-
 import { getAvailableToken, getCounterpartTokens, findPoolByTokens, isOperationPending, getSuccessMessage, getFailureMessage, getAvailableTokens } from '../utils';
 import { ROUTER_ADDRESS } from '../config';
 import { AmmountIn, AmmountOut, Balance } from './';
@@ -106,9 +102,7 @@ const Exchange = ({ pools }) => {
                 <div className='mb-8'>
                     <AmmountIn
                         value={fromValue}
-                        onChange={fromValueChange}
                         currencyValue={fromToken}
-                        onSelect={onFromTokenChange}
                         currencies={availableTokens}
                         inSwapping={isSwapping && hasEnoughBalance} />
 

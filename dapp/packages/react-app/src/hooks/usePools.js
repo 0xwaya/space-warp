@@ -19,8 +19,6 @@ export const usePools = () => {
     const { readOnlyChainId, readOnlyUrls } = useConfig();
     const [loading, setLoading] = useState(true);
     const [pools, setPools] = useState(true);
-    const [error, setError] = useState(false);
-
 
     useEffect(() => {
         loadPools(readOnlyUrls[readOnlyChainId])
