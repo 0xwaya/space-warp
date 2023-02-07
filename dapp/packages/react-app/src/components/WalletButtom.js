@@ -3,7 +3,7 @@ import { shortenAddress, useEthers, useLookupAddress } from '@usedapp/core';
 
 import styles from '../styles';
 
-const WalletButtom = () => {
+const WalletButton = () => {
     const [accountAddress, setAccountAddress] = useState('');
     const { ens } = useLookupAddress();
     const { account, activateBrowserWallet, deactivate } = useEthers();
@@ -28,11 +28,11 @@ const WalletButtom = () => {
                     deactivate();
                 }
             }}
-            className={styles.walletButtom}
+            className={styles.walletButton}
         >
             {accountAddress || "Connect Wallet"}
         </button>
     )
 }
 
-export default WalletButtom
+export default WalletButton
