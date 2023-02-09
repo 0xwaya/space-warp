@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { shortenAddress, useEthers, useLookupAddress } from '@usedapp/core';
 
-import styles from '../styles';
+import styles from '../styles/index';
 
 const WalletButton = () => {
     const [accountAddress, setAccountAddress] = useState('');

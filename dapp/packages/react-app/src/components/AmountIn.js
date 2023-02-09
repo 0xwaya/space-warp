@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 
 import { chevronDown } from '../assets';
-import styles from '../styles';
-import { useOnClickOutside } from '../utils';
+import styles from '../styles/index';
+import { useOnClickOutside } from '../utils/index';
 
 const AmountIn = ({ value, onChange, currencyValue, onSelect, currencies, isSwapping }) => {
     const [showList, setShowList] = useState = (false);

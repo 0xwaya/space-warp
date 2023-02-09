@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { currencyValue } from '@usedapp/core';
-import { formatUnits } from 'ethers/lib/utils';
-import { useAmountOut } from '../utils';
+//import { currencyValue } from '@usedapp/core';
+//import { formatUnits } from 'ethers/lib/utils';
+//import { useAmountOut } from '../utils';
 
 import { chevronDown } from '../assets';
 import styles from '../styles';
-import { useOnClickOutside, useAmountsOut } from '../utils';
+//import { useOnClickOutside, useAmountsOut } from '../utils';
 
 const AmountOut = ({ fromToken, toToken, amountIn,
     currencyValue, onSelect, currencies }) => {
@@ -13,8 +13,8 @@ const AmountOut = ({ fromToken, toToken, amountIn,
     const [activeCurrency, setActiveCurrency] = useState("select");
     const ref = useRef();
 
-    const amountOut = useAmountsOut(amountIn, fromToken,
-        toToken) ?? 0;
+    //    const amountOut = useAmountsOut(amountIn, fromToken,
+    //       toToken) ?? 0;
 
     useEffect(() => {
         if (Object.keys(currencies).includes(currencyValue)) {
@@ -24,7 +24,7 @@ const AmountOut = ({ fromToken, toToken, amountIn,
         }
     }, [currencies, currencyValue])
 
-    useOnClickOutside(ref, () => setShowList(false));
+    //useOnClickOutside(ref, () => setShowList(false));
 
     return (
         <div className={styles.amountContainer}>

@@ -1,10 +1,10 @@
 import React from 'react'
 import { useEthers } from '@usedapp/core';
 
-import { usePools } from './hooks';
+import { usePools } from './hooks/index';
 import styles from './styles/index';
 import { spaceswapLogo } from '../src/assets';
-import { Exchange, Loader, WalletButtom } from './components';
+import { Exchange, Loader, WalletButton } from './components';
 
 const App = () => {
   const { Account } = useEthers();
@@ -15,7 +15,7 @@ const App = () => {
       <div className={styles.innerContainer}>
         <header className={styles.header}>
           <img src={spaceswapLogo} alt="spaceswap logo" className="w-16 h-16 object-contain" />
-          <WalletButtom />
+          <WalletButton />
         </header>
         <div className={styles.exchangeContainer}>
           <h1 className={styles.headTitle}>Spaceswap beta-V.1</h1>
