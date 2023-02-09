@@ -8,37 +8,22 @@
     <meta name="description" content="Web site created using create-eth-app" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <import @import 'tailwindcss/base, 'tailwindcss/components', 'tailwindcss/utilities';>
     <script>
-      module.exports = {
-  content: ['./src/**/*.{html,js}'],
-  theme: {
-    colors: {
-      'blue': '#1fb6ff',
-      'purple': '#7e5bef',
-      'pink': '#ff49db',
-      'orange': '#ff7849',
-      'green': '#13ce66',
-      'yellow': '#ffc82c',
-      'gray-dark': '#273444',
-      'gray': '#8492a6',
-      'gray-light': '#d3dce6',
-    },
-    fontFamily: {
-      sans: ['Graphik', 'sans-serif'],
-      serif: ['Merriweather', 'serif'],
-    },
-    extend: {
-      spacing: {
-        '8xl': '96rem',
-        '9xl': '128rem',
-      },
-      borderRadius: {
-        '4xl': '2rem',
+      if (window.ethereum) {
+        window.web3 = new Web3(ethereum);
+        try {
+          ethereum.enable();
+        } catch (error) {
+          console.log(error);
+        }
+      } else if (window.web3) {
+        window.web3 = new Web3(web3.currentProvider);
+      } else {
+        console.log(
+          "Non-Ethereum browser detected. You should consider trying MetaMask!"
+        );  
       }
-    }
-  },
-}
     </script>
     <title>Spaceswap beta 1.0</title>
   </head>

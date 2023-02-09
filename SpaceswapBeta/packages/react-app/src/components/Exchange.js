@@ -6,10 +6,11 @@ import { getAvailableToken, getCounterpartTokens, findPoolByTokens, isOperationP
 import { ROUTER_ADDRESS } from '../config';
 import { AmountIn, AmountOut, Balance } from './';
 import styles from '../styles';
+import { math } from 'ethers/lib/utils';
 
 import { parseUnits } from '@ethersproject/units';
-import { ehers } from 'ethers';
-import { math } from '@ethersproject/contracts
+import { ethers } from 'ethers';
+
 
 
 const Exchange = ({ pools }) => {
@@ -72,17 +73,7 @@ const Exchange = ({ pools }) => {
     }
 
     const onFromValueChange = (value) => {
-        const trimmedValue = value.trim();
 
-        try {
-            if (trimmedValue) {
-                parseUnits(value);
-            }
-        } catch (err) {
-            // Handle error
-        } finally {
-            // Execute code regardless of the result of the try/catch block
-        }
 
         const onFromTokenChange = (value) => {
             setFromToken(value);
@@ -98,9 +89,10 @@ const Exchange = ({ pools }) => {
                     setResetState(true);
                     setFromValue("0");
                     setToToken("");
-                }, 5000)
+                }, 5000);
             }
-        }, [failureMessage, successMessage]);
+        }, [failureMessage, successMessage]
+        );
 
         return (
             <div className='flex, flex-col w-full items-center'>

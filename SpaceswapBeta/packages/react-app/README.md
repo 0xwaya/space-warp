@@ -1,8 +1,80 @@
-# @my-app/react-app
+# ETHGlobal 
+# Space 🛸 Warp hackathon
 
-This package is a fork of the default app built with [Create React App](https://github.com/facebook/create-react-app).
+## Creating a Dapp Dex powered by (Uniswap v2.0) 
+## run on FVM hyperspace testnet, deploy token,
+## create FIL+SPACE pair in LP
 
-## Available Scripts
+
+###  (experimental code only )
+
+### Dev:  @0xwaya
+
+
+Project goal to to deploy a Dex dapp on FVM powered by uniswap. 
+
+
+* Create & running FVM hyperspace testnet node on ChainStack. (Orion-node)
+
+```
+    HTTPS endpoint: https://nd-998-437-463.p2pify.com/rpc/v0
+
+    WSS Endpoint: wss://ws-nd-998-437-463.p2pify.com/rpc/v0
+
+ ```
+
+
+* Created SpaceCoinV1 and deployed on FVM.
+
+```
+
+	SPACE V1 Contract: “ 0x9b7aF8E07B846519c6f811880B21Df947f55B057 ”
+
+```
+
+
+        
+* Created & deployed FILEcoinMOCK  ERC20 token on FVM.
+
+```
+
+	
+        FILE V1  Contract: “ 0x2548323B2AfBABbc89206A81786d6D075b382735 ”             
+
+
+```
+
+
+* Created & deployed SpaceswapFactoryV1.sol 
+
+```
+
+        Spaceswap V1 - FACTORY: “ 0x73372C04C14f91862045A8a67D724e894e9ba5ca “
+
+```
+
+
+* Created & deployed SpaceswapRouterV1.sol 
+
+```
+
+        Spaceswap V1 - ROUTER: “ 0xB9491aef6f4d742ad7f648EF43baE3dA6b5e6F1D “
+
+```
+
+* Created & deployed (FILE + SPACE) LP paircontract.
+
+```
+
+	FILEV1 + SPACE V1 =  LP PAIR = “ 0x93d544bfeE90C7c69f1Fbb6024255283D8135C6C  “
+
+```
+
+
+
+
+
+FOR EXPERIMENTAL USE ONLY!!!!!!
 
 In the project directory, you can run:
 
@@ -73,3 +145,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+xs
